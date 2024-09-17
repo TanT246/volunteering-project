@@ -41,7 +41,7 @@ function VolunteerMatchingForm() {
             sx={{
               padding: '2rem',
               borderRadius: '12px',
-              backgroundColor: '#f5f5f5',
+              backgroundColor: '#fff',
               boxShadow: '0px 4px 20px rgba(0, 0, 0, 0.1)',
             }}
           >
@@ -50,8 +50,9 @@ function VolunteerMatchingForm() {
               align="center"
               gutterBottom
               sx={{
-                color: '#1976d2', // Blue primary color
+                color: '#D62828', 
                 fontWeight: 'bold',
+                fontFamily: 'Bangers, sans-serif', 
               }}
             >
               Match Volunteers to Events
@@ -69,6 +70,7 @@ function VolunteerMatchingForm() {
                 sx={{
                   backgroundColor: '#ffffff',
                   borderRadius: '8px',
+                  fontFamily: 'Permanent Marker, sans-serif', 
                 }}
               >
                 {volunteers.map((volunteer) => (
@@ -90,6 +92,7 @@ function VolunteerMatchingForm() {
                 sx={{
                   backgroundColor: '#ffffff',
                   borderRadius: '8px',
+                  fontFamily: 'Permanent Marker, sans-serif', 
                 }}
               />
 
@@ -97,7 +100,6 @@ function VolunteerMatchingForm() {
                 <Button
                   type="submit"
                   variant="contained"
-                  color="primary"
                   fullWidth
                   disabled={!matchedEvent}
                   sx={{
@@ -106,6 +108,8 @@ function VolunteerMatchingForm() {
                     '&:hover': {
                       backgroundColor: matchedEvent ? '#388e3c' : '#c62828',
                     },
+                    fontFamily: 'Bangers, sans-serif', 
+                    fontWeight: 'bold',
                   }}
                 >
                   Match Volunteer
