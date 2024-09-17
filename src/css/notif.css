@@ -1,0 +1,112 @@
+/* Full viewport height with centered content */
+.App {
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f4f4f4;
+    margin: 0;
+    position: relative;
+    overflow: hidden; /* Prevent overflow during animation */
+}
+
+/* Notification wrapper with padding and shadow */
+.notification-wrapper {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    max-width: 800px;
+    text-align: center;
+    margin: 0 auto;
+    opacity: 0; 
+    transform: translateY(100px); 
+    animation: slideUpFadeIn 1s ease forwards; 
+}
+
+/* Header styling */
+.notification-wrapper h1 {
+    margin-bottom: 20px;
+}
+
+/* Notification container with a fixed height and scroll functionality */
+.notification-container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    height: 30rem; 
+    width: 50rem;
+    overflow-y: scroll; 
+    padding-right: 10px;
+}
+
+/* Customize scrollbar thumb for Chrome, Safari and Edge */
+.notification-container::-webkit-scrollbar {
+    width: 12px;
+}
+
+.notification-container::-webkit-scrollbar-thumb {
+    background: #868282; 
+    border-radius: 10px;
+}
+
+/* Individual notification box styling */
+.notification {
+    background-color: #444;
+    border-radius: 5px;
+    padding: 15px;
+    color: white;
+    text-align: left;
+    position: relative;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* Notification title styling */
+.notification h2 {
+    margin: 0 0 10px 0;
+    font-size: 18px;
+}
+
+/* Notification message styling */
+.notification p {
+    margin: 5px 0 10px 0;
+}
+
+/* Timestamp styling */
+.notification span {
+    font-size: 12px;
+    color: #ccc;
+}
+
+/* Dismiss button styling */
+.notification button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: transparent;
+    border: none;
+    color: white;
+    cursor: pointer;
+    font-size: 14px;
+    padding: 0;
+}
+
+/* Hover effect for the dismiss button */
+.notification button:hover {
+    color: #ff5c5c;
+}
+
+/* Keyframes for sliding up and fading in */
+@keyframes slideUpFadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(100px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0); 
+    }
+}
