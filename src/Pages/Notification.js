@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import '../css/notif.css';
 
-const App = () => {
+const Notif = () => {
   const [notifications, setNotifications] = useState([]);
   const [showScrollArrow, setShowScrollArrow] = useState(true);
   const containerRef = useRef(null); // Reference to notification container
@@ -79,9 +79,9 @@ const App = () => {
   };
 
   return (
-    <div className="notif">
+    <div className="notif-page"> {/* Unique class added here */}
       <div className="notification-wrapper">
-        <h1>Notification Center</h1>
+        <h1>Notifications</h1>
         <div 
           className="notification-container"
           ref={containerRef}
@@ -118,4 +118,4 @@ const App = () => {
   );
 };
 
-export default App;
+export default Notif;
