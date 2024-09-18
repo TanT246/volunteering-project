@@ -7,6 +7,7 @@ import VolunteerMatchingForm from './Pages/VolunteerMatchingForm'; // Importing 
 import Home from './Pages/Home'; //import home page from /pages
 import UserRegistrationForm from './Pages/UserRegistrationForm';
 import EventManager from './Pages/EventManager';
+import UserProfileManager from './Pages/UserProfileManager'
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
           {/* Define the route for the Volunteer Matching Form page */}
           <Route path="/volunteer-match" element={<VolunteerMatchingForm />} />
           <Route path="/event-manager" element={<EventManager />} />
+          <Route path="/user-profile-manager" element={<UserProfileManager />} />
         </Routes>
       </div>
     </Router>
