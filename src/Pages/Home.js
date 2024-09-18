@@ -36,7 +36,7 @@ function HomePage() {
             variant="h2"
             sx={{
               fontWeight: 'bold',
-              fontFamily: 'Bangers, sans-serif',
+              fontFamily: 'Bangers, sans-serif', // Comic-book style font
               color: '#FFF',
               mb: 2, // Margin bottom for spacing
             }}
@@ -47,7 +47,7 @@ function HomePage() {
             variant="h6"
             sx={{
               color: '#FFF',
-              fontFamily: 'Permanent Marker, sans-serif',
+              fontFamily: 'Permanent Marker, sans-serif', // Handwritten comic style
             }}
           >
             Inspire the next generation of scientists and innovators.
@@ -55,7 +55,7 @@ function HomePage() {
           <Button
             variant="contained"
             sx={{
-              backgroundColor: '#FCBF49',
+              backgroundColor: '#FCBF49', // Yellow color from your theme
               color: '#000',
               '&:hover': {
                 backgroundColor: '#F2A600',
@@ -63,7 +63,7 @@ function HomePage() {
               padding: '12px 24px',
               fontSize: '1rem',
               fontWeight: 'bold',
-              fontFamily: 'Bangers, sans-serif',
+              fontFamily: 'Bangers, sans-serif', // Comic font for button
               mt: 3, // Added margin-top for spacing
             }}
           >
@@ -79,7 +79,7 @@ function HomePage() {
           sx={{
             fontFamily: 'Bangers, sans-serif',
             textAlign: 'center',
-            color: '#D62828',
+            color: '#D62828', // Red color from your theme
             mb: 4,
           }}
         >
@@ -92,7 +92,7 @@ function HomePage() {
                 <Typography variant="h5" sx={{ fontFamily: 'Permanent Marker, sans-serif', mb: 2 }}>
                   Lead Workshops
                 </Typography>
-                <Typography variant="body1">
+                <Typography variant="body1" sx={{ fontFamily: 'Permanent Marker, sans-serif' }}>
                   Help lead fun, hands-on STEM workshops for kids and inspire the next generation of engineers and scientists.
                 </Typography>
               </CardContent>
@@ -104,7 +104,7 @@ function HomePage() {
                 <Typography variant="h5" sx={{ fontFamily: 'Permanent Marker, sans-serif', mb: 2 }}>
                   Mentor Students
                 </Typography>
-                <Typography variant="body1">
+                <Typography variant="body1" sx={{ fontFamily: 'Permanent Marker, sans-serif' }}>
                   Become a mentor and provide guidance, encouragement, and support to students in their STEM journey.
                 </Typography>
               </CardContent>
@@ -116,7 +116,7 @@ function HomePage() {
                 <Typography variant="h5" sx={{ fontFamily: 'Permanent Marker, sans-serif', mb: 2 }}>
                   Plan Events
                 </Typography>
-                <Typography variant="body1">
+                <Typography variant="body1" sx={{ fontFamily: 'Permanent Marker, sans-serif' }}>
                   Join our event planning team and help organize exciting STEM events for the community.
                 </Typography>
               </CardContent>
@@ -132,7 +132,7 @@ function HomePage() {
           sx={{
             fontFamily: 'Bangers, sans-serif',
             textAlign: 'center',
-            color: '#2F2F9B',
+            color: '#2F2F9B', // Dark blue color for section title
             mb: 4,
           }}
         >
@@ -145,7 +145,7 @@ function HomePage() {
                 <Typography variant="h5" sx={{ fontFamily: 'Permanent Marker, sans-serif', mb: 2 }}>
                   {/* Title and details intentionally left blank */}
                 </Typography>
-                <Typography variant="body1">
+                <Typography variant="body1" sx={{ fontFamily: 'Permanent Marker, sans-serif' }}>
                   {/* Description intentionally left blank */}
                 </Typography>
               </CardContent>
@@ -157,7 +157,7 @@ function HomePage() {
                 <Typography variant="h5" sx={{ fontFamily: 'Permanent Marker, sans-serif', mb: 2 }}>
                   {/* Title and details intentionally left blank */}
                 </Typography>
-                <Typography variant="body1">
+                <Typography variant="body1" sx={{ fontFamily: 'Permanent Marker, sans-serif' }}>
                   {/* Description intentionally left blank */}
                 </Typography>
               </CardContent>
@@ -170,7 +170,7 @@ function HomePage() {
       <Box
         sx={{
           backgroundColor: '#000',
-          color: '#FCBF49',
+          color: '#FCBF49', // Yellow color from your theme
           textAlign: 'center',
           padding: '16px 0',
           marginTop: 'auto',
@@ -180,8 +180,8 @@ function HomePage() {
           © 2024 STEM Superheroes - All Rights Reserved
         </Typography>
         <Box sx={{ mt: 2 }}>
-          <Button color="inherit">Privacy Policy</Button>
-          <Button color="inherit">Terms of Service</Button>
+          <Button color="inherit" sx={{ fontFamily: 'Permanent Marker, sans-serif' }}>Privacy Policy</Button>
+          <Button color="inherit" sx={{ fontFamily: 'Permanent Marker, sans-serif' }}>Terms of Service</Button>
         </Box>
       </Box>
     </Box>

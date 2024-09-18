@@ -16,6 +16,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/Login" element={<Login />} />
           <Route path="/UserRegistrationForm" element={<UserRegistrationForm />} />
+          <Route path="/register" component={UserRegistrationForm} />
           {/* Define the route for the Volunteer Matching Form page */}
           <Route path="/volunteer-match" element={<VolunteerMatchingForm />} />
         </Routes>
