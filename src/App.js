@@ -19,7 +19,6 @@ function App() {
           <Route path="/UserRegistrationForm" element={<UserRegistrationForm />} />
           {/* Define the route for the Volunteer Matching Form page */}
           <Route path="/volunteer-match" element={<VolunteerMatchingForm />} />
-
           <Route path="/notif" element={<Notif />} />
         </Routes>
       </div>

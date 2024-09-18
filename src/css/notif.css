@@ -1,84 +1,112 @@
-/* Full viewport height with centered content */
 .App {
     height: 100vh;
     width: 100vw;
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #f4f4f4;
-    margin: 0;
+    background: url('../../public/cityview.webp') no-repeat center center; /* Add your image here */
+    background-size: cover; /* Cover the whole background */
     position: relative;
-    overflow: hidden; /* Prevent overflow during animation */
+    overflow: hidden;
+}
+/* Position the Power Girl image at the bottom-left corner */
+.power-girl-img {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 28vw; /* Adjust the size as necessary */
+    z-index: 1; /* Ensure it stays behind the content but above the background */
+    animation: bounce 2s infinite ease-in;
+    /* Adjust the cape to overlap the wrapper */
+    transform: translate(-20px, 10px); /* Fine-tune this for better overlapping */
 }
 
 /* Notification wrapper with padding and shadow */
 .notification-wrapper {
-    background-color: white;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
-    width: 100%;
-    max-width: 800px;
-    text-align: center;
-    margin: 0 auto;
-    opacity: 0; 
-    transform: translateY(100px); 
-    animation: slideUpFadeIn 1s ease forwards; 
+    background-color: rgba(255, 255, 255, 0.8); /* Light transparent background */
+    padding: 30px;
+    border-radius: 15px;
+    border: 0.2rem solid #55529F;
+    box-shadow: 0px 4px 15px rgba(85, 82, 159, 1); /* Darker shadow */
+    width: 50vw;
+    max-width: 1200px;
+    min-width: 20rem;
+    z-index: 2; /* Keep it above the background */
+    animation: slideUpFadeIn 1s ease forwards;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 /* Header styling */
 .notification-wrapper h1 {
     margin-bottom: 20px;
+    text-align: center;
+    width: 100%;
+    font-size: 2rem;
+    font-weight: bold;
+    color: #D5372C; /* Softer yellow for a warm header */
 }
 
-/* Notification container with a fixed height and scroll functionality */
+/* Notification container with scroll functionality */
 .notification-container {
     display: flex;
     flex-direction: column;
     gap: 15px;
     height: 30rem; 
-    width: 50rem;
-    overflow-y: scroll; 
-    padding-right: 10px;
-}
-
-/* Customize scrollbar thumb for Chrome, Safari and Edge */
-.notification-container::-webkit-scrollbar {
-    width: 12px;
-}
-
-.notification-container::-webkit-scrollbar-thumb {
-    background: #868282; 
+    width: 100%;
+    max-width: 70rem;
+    overflow-y: auto;
+    padding-right: 0;
+    box-sizing: border-box;
     border-radius: 10px;
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Hide scrollbar */
+.notification-container::-webkit-scrollbar {
+    display: none;
 }
 
 /* Individual notification box styling */
 .notification {
-    background-color: #444;
-    border-radius: 5px;
-    padding: 15px;
+    background-color: #1A84C3; /* Softened blue for notifications */
+    border: 0.2rem solid #55529F;
+    border-radius: 8px;
+    padding: 20px;
     color: white;
     text-align: left;
     position: relative;
     width: 100%;
     box-sizing: border-box;
+    margin: 0;
 }
 
 /* Notification title styling */
 .notification h2 {
     margin: 0 0 10px 0;
-    font-size: 18px;
+    font-size: 1.4rem;
+    color: #F5DC96; /* Consistent yellow for titles */
 }
 
 /* Notification message styling */
 .notification p {
     margin: 5px 0 10px 0;
+    color: #F3F3F4; /* Off-white for readability */
+    font-size: 1.05rem;
+}
+
+#simple-text {
+    text-align: center;
+    font-weight: bold;
+    font-size: 1.5rem;
+    color: #D5372C; /* Bold red for emphasis */
 }
 
 /* Timestamp styling */
 .notification span {
-    font-size: 12px;
-    color: #ccc;
+    font-size: 0.85rem;
+    color: #E5B471; /* Light brown for timestamp */
 }
 
 /* Dismiss button styling */
@@ -88,16 +116,48 @@
     right: 10px;
     background: transparent;
     border: none;
-    color: white;
+    color: #F5DC96;
     cursor: pointer;
-    font-size: 14px;
+    font-size: 1rem;
     padding: 0;
 }
 
 /* Hover effect for the dismiss button */
 .notification button:hover {
-    color: #ff5c5c;
+    color: #D5372C; /* Subtle red hover effect */
 }
+
+/* Wrapper around the arrow to maintain consistent space */
+.scroll-arrow-wrapper {
+    height: 40px; /* Reserve space for the arrow */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 15px;
+}
+
+/* Scroll arrow styling */
+.scroll-arrow{
+    cursor: pointer;
+    font-size: 24px;
+    color: #55529F;
+    opacity: 1; /* Default is fully visible */
+    transition: opacity 0.3s ease, visibility 0.3s ease; /* Smooth fade */
+    animation: bounce 1.5s infinite;
+}
+
+/* Hide arrow when not needed */
+.scroll-arrow.hide {
+    opacity: 0; /* Fully transparent */
+    pointer-events: none; /* Disable interaction */
+    visibility: hidden; /* Fully hidden after transition */
+}
+
+/* Scroll arrow hover effect */
+.scroll-arrow:hover {
+    color: #D5372C; /* Red hover for the arrow */
+}
+
 
 /* Keyframes for sliding up and fading in */
 @keyframes slideUpFadeIn {
@@ -108,5 +168,15 @@
     100% {
         opacity: 1;
         transform: translateY(0); 
+    }
+}
+
+/* Keyframes for bouncing the arrow */
+@keyframes bounce {
+    0%, 100% {
+        transform: translateY(4px); /* Default position */
+    }
+    50% {
+        transform: translateY(0); /* Move up by 5px */
     }
 }
