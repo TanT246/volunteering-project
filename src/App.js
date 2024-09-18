@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'; // Im
 import Login from './Pages/Login'; // Importing the path for the Login page
 import VolunteerMatchingForm from './Pages/VolunteerMatchingForm'; // Importing the path for the Volunteer Matching Form
 import Home from './Pages/Home'; //import home page from /pages
+import Notif from './Pages/Notification'; //import home page from /pages
 import UserRegistrationForm from './Pages/UserRegistrationForm';
 import EventManager from './Pages/EventManager';
 
@@ -20,6 +21,7 @@ function App() {
           {/* Define the route for the Volunteer Matching Form page */}
           <Route path="/volunteer-match" element={<VolunteerMatchingForm />} />
           <Route path="/event-manager" element={<EventManager />} />
+          <Route path="/notif" element={<Notif />} />
         </Routes>
       </div>
     </Router>
