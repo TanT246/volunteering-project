@@ -5,6 +5,7 @@ import Header from './Pages/Header';
 import Login from './Pages/Login'; // Importing the path for the Login page
 import VolunteerMatchingForm from './Pages/VolunteerMatchingForm'; // Importing the path for the Volunteer Matching Form
 import Home from './Pages/Home'; //import home page from /pages
+import Notif from './Pages/Notification'; //import home page from /pages
 import UserRegistrationForm from './Pages/UserRegistrationForm';
 import EventManager from './Pages/EventManager';
 import UserProfileManager from './Pages/UserProfileManager'
@@ -23,7 +24,11 @@ function App() {
           {/* Define the route for the Volunteer Matching Form page */}
           <Route path="/volunteer-match" element={<VolunteerMatchingForm />} />
           <Route path="/event-manager" element={<EventManager />} />
+<<<<<<< HEAD
           <Route path="/user-profile-manager" element={<UserProfileManager />} />
+=======
+          <Route path="/notif" element={<Notif />} />
+>>>>>>> origin/main
         </Routes>
       </div>
     </Router>
