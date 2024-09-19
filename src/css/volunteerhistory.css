@@ -16,7 +16,7 @@
   position: fixed; /* Ensure the image is fixed relative to the viewport */
   bottom: -2rem; /* Distance from the bottom of the browser window */
   right: -2rem; /* Distance from the right of the browser window */
-  width: 27rem; /* Set the size as needed */
+  width: 25rem; /* Set the size as needed */
   height: auto; /* Maintain aspect ratio */
   z-index: 2; /* Ensure it stays on top of other content */
   animation: pulse 2s infinite;
@@ -185,6 +185,6 @@
       transform: scale(1); /* Normal size */
     }
     50% {
-      transform: scale(1.02); /* Slightly larger */
+      transform: scale(1.05); /* Slightly larger */
     }
   }
