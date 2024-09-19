@@ -29,7 +29,7 @@ const Notif = () => {
         const randomNotification = getRandomNotification();
         addNotification(randomNotification.title, randomNotification.message);
       }
-    }, 10000); // New notification every 10 seconds
+    }, 1000); // New notification every 10 seconds
 
     // Cleanup interval on component unmount
     return () => clearInterval(interval);

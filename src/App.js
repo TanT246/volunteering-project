@@ -9,6 +9,7 @@ import UserRegistrationForm from './Pages/UserRegistrationForm';
 import EventManager from './Pages/EventManager';
 import UserProfileManager from './Pages/UserProfileManager';
 import NavBar from './component/NavBar';
+import VolunteeringHistory from './Pages/VolunteerHistory';
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
           <Route path="/event-manager" element={<EventManager />} />
           <Route path="/user-profile-manager" element={<UserProfileManager />} />
           <Route path="/notif" element={<Notif />} />
+          <Route path="/volunteer-history" element={<VolunteeringHistory/>} />
         </Routes>
       </div>
     </Router>

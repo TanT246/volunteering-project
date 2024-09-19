@@ -1,0 +1,190 @@
+@import url('https://fonts.googleapis.com/css2?family=Bangers&display=swap');
+/* Background */
+.background {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(to bottom, #333, #444); /* Blackish gradient */
+    background: url('../../public/redcity.webp') no-repeat center center;
+    background-size: cover;
+    position: relative;
+  }
+  /* Character Image Styling */
+/* Character Image Styling */
+.character-img {
+  position: fixed; /* Ensure the image is fixed relative to the viewport */
+  bottom: -2rem; /* Distance from the bottom of the browser window */
+  right: -2rem; /* Distance from the right of the browser window */
+  width: 27rem; /* Set the size as needed */
+  height: auto; /* Maintain aspect ratio */
+  z-index: 2; /* Ensure it stays on top of other content */
+  animation: pulse 2s infinite;
+}
+
+
+  .volunteer-history-wrapper {
+    max-width: 900px; /* Set max-width for the entire container */
+    width: 100%;
+    height: 85vh; /* Fixed height */
+    padding: 20px;
+    background-color: rgba(0, 0, 0, 0.80); /* Keep wrapper semi-transparent */
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 1s ease, transform 1s ease;
+    overflow: hidden;
+    position: relative;
+    box-sizing: border-box; /* Ensure padding is part of width calculation */
+  }
+  
+  .fade-in {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  .volunteer-history-title {
+    text-align: center;
+    color: #ef233c;
+    font-size: 2rem;
+    margin-bottom: 20px;
+    font-family: 'Bangers', cursive;
+    -webkit-text-stroke: 0.7px black;
+  }
+  
+  /* Centering the search bar and table */
+  .search-bar,
+  .table-container {
+    width: 100%;
+    max-width: 100%;
+    margin: 0 auto;
+    display: block;
+    box-sizing: border-box; /* Include padding/border in width calculation */
+  }
+  
+  /* Search bar styling */
+  .search-bar {
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 10px;
+    border: 1px solid #fcf5f5;
+    background-color: #f8f9fa;
+    font-size: 16px;
+    font-family: "Permanent Marker";
+    box-sizing: border-box;
+  }
+  
+  /* Table container with scroll */
+  .table-container {
+    max-height: calc(100% - 160px); /* Dynamic height to fit inside the fixed-height wrapper */
+    overflow-y: auto;
+    padding-right: 0; /* Remove extra padding */
+    box-sizing: border-box; /* Ensure no extra width is added */
+  }
+  
+  .table-container::-webkit-scrollbar {
+    display: none;
+  }
+  
+  /* Sticky table header */
+  .history-table thead {
+    position: sticky;
+    top: 0;
+    background-color: #c1121f; /* Solid red header */
+    z-index: 1;
+  }
+  
+  /* Table styling */
+  .history-table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #e9ecef; /* Light gray background for table */
+    box-sizing: border-box;
+  }
+  
+  .history-table th,
+  .history-table td {
+    padding: 12px;
+    text-align: left;
+    border: 3px solid #c1121f;
+    background-color: #f8f9fa; /* Ensure table cells have a white background */
+    font-family: "Permanent Marker";
+  }
+  
+  .history-table th {
+    background-color: #000; /* Black background for header */
+    color: #fff;
+  }
+  
+  /* Color-specific classes for urgency */
+  .low {
+    color: #45cc5b; /* Black for low urgency */
+  }
+  
+  .medium {
+    color: #ffcc00; /* Yellow for medium urgency */
+  }
+  
+  .high {
+    color: #ff0000; /* Red for high urgency */
+  }
+  
+  
+  .completed {
+    color: #45cc5b;
+  }
+  
+  .pending {
+    color: #ff0000;
+  }
+  
+  /* Row hover effect */
+  .history-table tbody tr:hover {
+    background-color: #f4f4f4; /* Light gray background on hover */
+  }
+  
+  /* Scroll Arrow Wrapper */
+.volunteer-scroll-arrow-wrapper {
+    height: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 15px;
+    position: relative;
+  }
+  
+  /* Scroll Arrow using CSS triangle */
+  .volunteer-scroll-arrow {
+    width: 0;
+    height: 0;
+    border-left: 15px solid transparent;
+    border-right: 15px solid transparent;
+    border-top: 20px solid red;
+    cursor: pointer;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    animation: bounces 1.5s infinite;
+  }
+  
+  .volunteer-scroll-arrow:hover {
+    border-top-color: #D5372C;
+  }
+  
+  @keyframes bounces {
+    0%,
+    100% {
+      transform: translateY(-5px);
+    }
+    50% {
+      transform: translateY(-2px);
+    }
+  }
+  
+  @keyframes pulse {
+    0%, 100% {
+      transform: scale(1); /* Normal size */
+    }
+    50% {
+      transform: scale(1.02); /* Slightly larger */
+    }
+  }
