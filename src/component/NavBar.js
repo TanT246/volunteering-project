@@ -18,6 +18,7 @@ const NavBar = () => {
             <a href="/volunteer-match">Volunteer Match</a>
             <a href="/event-manager">Event Management</a>
             <a href="/user-profile-manager">User Profile Management</a>
+            <a href="/volunteer-history">Volunteer History</a>
             <a href="/notif">Notifications</a>
           </div>
         </li>
