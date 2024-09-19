@@ -1,86 +1,92 @@
-import React, { useState } from 'react';
-import { AppBar, Toolbar, Typography, Container, TextField, MenuItem, Button, Box, Grid, Paper } from '@mui/material';
-import { Link } from 'react-router-dom';  // Import Link for routing
+import React, { useState, useEffect } from 'react';
+import { Container, TextField, MenuItem, Button, Typography, Box, Grid, Paper } from '@mui/material';
+
+const sampleVolunteers = [
+  { _id: '1', name: 'John Doe', skills: 'Coding', location: 'New York' },
+  { _id: '2', name: 'Jane Smith', skills: 'Design', location: 'San Francisco' },
+  { _id: '3', name: 'Bob Johnson', skills: 'Coding', location: 'New York' },
+];
+
+const sampleEvents = [
+  { _id: '1', name: 'Hackathon 2024', skillsRequired: 'Coding', location: 'New York' },
+  { _id: '2', name: 'Design Sprint', skillsRequired: 'Design', location: 'San Francisco' },
+  { _id: '3', name: 'NYC Code Jam', skillsRequired: 'Coding', location: 'New York' },
+];
 
 function VolunteerMatchingForm() {
-  const [volunteers] = useState([]); // Mock data can be re-added later
-  const [events] = useState([]); // Mock data can be re-added later
+  const [volunteers] = useState(sampleVolunteers);
+  const [events] = useState(sampleEvents);
   const [selectedVolunteer, setSelectedVolunteer] = useState('');
-  const [matchedEvent, setMatchedEvent] = useState('');
+  const [matchedEvents, setMatchedEvents] = useState([]);
+  const [selectedEvent, setSelectedEvent] = useState('');
+
+  useEffect(() => {
+    // Reset the matched events and selected event when the volunteer changes
+    setMatchedEvents([]);
+    setSelectedEvent('');
+  }, [selectedVolunteer]);
 
   const handleVolunteerChange = (e) => {
     const volunteerId = e.target.value;
     setSelectedVolunteer(volunteerId);
 
-    // Find the matched event based on volunteer skills and location
     const volunteer = volunteers.find(v => v._id === volunteerId);
-    const matchedEvent = events.find(event => event.skillsRequired.includes(volunteer.skills) && event.location === volunteer.location);
+    const matches = events.filter(
+      event => event.skillsRequired.includes(volunteer.skills) && event.location === volunteer.location
+    );
 
-    if (matchedEvent) {
-      setMatchedEvent(matchedEvent._id);
-    } else {
-      setMatchedEvent('');
-    }
+    setMatchedEvents(matches); // Store all matching events
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (selectedVolunteer && matchedEvent) {
-      // Log the matching for now (replace with actual backend call later)
-      console.log('Volunteer and event matched:', selectedVolunteer, matchedEvent);
+    if (selectedVolunteer && selectedEvent) {
+      alert(`Volunteer and event matched! Volunteer ID: ${selectedVolunteer}, Event ID: ${selectedEvent}`);
     } else {
-      console.error('No matching event found');
+      alert('No event selected.');
     }
   };
 
   return (
-    <>
-      {/* Navigation Bar */}
-      <AppBar position="static" sx={{ backgroundColor: '#2F2F9B' }}>
-        <Toolbar>
-          <Typography variant="h6" sx={{ flexGrow: 1, fontFamily: 'Bangers, sans-serif', color: '#FFF' }}>
-            STEM Superheroes
-          </Typography>
-          <Button color="inherit" component={Link} to="/" sx={{ fontFamily: 'Permanent Marker, sans-serif', color: '#FFF', marginRight: '16px' }}>
-            Home
-          </Button>
-          <Button color="inherit" component={Link} to="/about" sx={{ fontFamily: 'Permanent Marker, sans-serif', color: '#FFF', marginRight: '16px' }}>
-            About Us
-          </Button>
-          <Button color="inherit" component={Link} to="/get-involved" sx={{ fontFamily: 'Permanent Marker, sans-serif', color: '#FFF', marginRight: '16px' }}>
-            Get Involved
-          </Button>
-          <Button color="inherit" component={Link} to="/workshops" sx={{ fontFamily: 'Permanent Marker, sans-serif', color: '#FFF' }}>
-            Workshops
-          </Button>
-        </Toolbar>
-      </AppBar>
-
-      {/* Main Form */}
+    <div
+      style={{
+        backgroundImage: `url('${process.env.PUBLIC_URL}/dynamic-background.jpg')`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        minHeight: '100vh',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        backgroundColor: '#202020',
+        padding: '2rem',
+      }}
+    >
       <Container maxWidth="md">
-        <Grid container justifyContent="center" alignItems="center" style={{ minHeight: '100vh' }}>
+        <Grid container justifyContent="center" alignItems="center">
           <Grid item xs={12} sm={8} md={6}>
             <Paper
-              elevation={5}
+              elevation={10}
               sx={{
                 padding: '2rem',
-                borderRadius: '12px',
-                backgroundColor: '#fff',
-                boxShadow: '0px 4px 20px rgba(0, 0, 0, 0.1)',
+                borderRadius: '16px',
+                backgroundColor: 'rgba(255, 255, 255, 0.75)', // Slight transparency
+                boxShadow: '0px 10px 30px rgba(0, 0, 0, 0.2)',
+                backdropFilter: 'blur(10px)',
               }}
             >
               <Typography
-                variant="h4"
+                variant="h3"
                 align="center"
                 gutterBottom
                 sx={{
-                  color: '#D62828', 
+                  color: '#D62828', // Red for the title
                   fontWeight: 'bold',
-                  fontFamily: 'Bangers, sans-serif', 
+                  fontFamily: 'Bangers, sans-serif',
                 }}
               >
                 Match Volunteers to Events
               </Typography>
+
               <form onSubmit={handleSubmit}>
                 <TextField
                   select
@@ -94,7 +100,8 @@ function VolunteerMatchingForm() {
                   sx={{
                     backgroundColor: '#ffffff',
                     borderRadius: '8px',
-                    fontFamily: 'Permanent Marker, sans-serif', 
+                    fontFamily: 'Roboto, sans-serif',
+                    boxShadow: '0px 4px 10px rgba(0, 0, 0, 0.1)',
                   }}
                 >
                   {volunteers.map((volunteer) => (
@@ -104,39 +111,63 @@ function VolunteerMatchingForm() {
                   ))}
                 </TextField>
 
+                {/* Matched Event Dropdown */}
                 <TextField
-                  label="Matched Event"
-                  value={matchedEvent ? events.find((event) => event._id === matchedEvent)?.name : 'No Matching Event'}
+                  select
+                  label="Select Matched Event"
+                  value={selectedEvent}
+                  onChange={(e) => setSelectedEvent(e.target.value)}
                   fullWidth
                   margin="normal"
                   variant="outlined"
-                  InputProps={{
-                    readOnly: true,
-                  }}
+                  required
                   sx={{
                     backgroundColor: '#ffffff',
                     borderRadius: '8px',
-                    fontFamily: 'Permanent Marker, sans-serif', 
+                    fontFamily: 'Roboto, sans-serif',
+                    boxShadow: '0px 4px 10px rgba(0, 0, 0, 0.1)',
                   }}
-                />
+                  disabled={!matchedEvents.length} // Disable if no matches
+                >
+                  {matchedEvents.length ? (
+                    matchedEvents.map((event) => (
+                      <MenuItem key={event._id} value={event._id}>
+                        {event.name}
+                      </MenuItem>
+                    ))
+                  ) : (
+                    <MenuItem value="">
+                      No Matching Event Found
+                    </MenuItem>
+                  )}
+                </TextField>
 
-                <Box mt={3}>
+                <Box mt={4}>
                   <Button
                     type="submit"
                     variant="contained"
                     fullWidth
-                    disabled={!matchedEvent}
+                    disabled={!selectedEvent}
                     sx={{
-                      padding: '12px 0',
-                      backgroundColor: matchedEvent ? '#43a047' : '#d32f2f', // Green if matched, Red if no match
+                      padding: '16px 0',
+                      backgroundColor: selectedEvent ? '#D62828' : '#FF4500',
                       '&:hover': {
-                        backgroundColor: matchedEvent ? '#388e3c' : '#c62828',
+                        backgroundColor: selectedEvent ? '#B22222' : '#FF6347',
                       },
-                      fontFamily: 'Bangers, sans-serif', // Comic-book font for the button
+                      fontFamily: 'Bangers, sans-serif',
                       fontWeight: 'bold',
+                      color: '#FFF',
+                      borderRadius: '12px',
+                      fontSize: '1.2rem',
+                      textTransform: 'uppercase',
+                      transition: 'transform 0.2s ease-in-out',
+                      '&:disabled': {
+                        backgroundColor: '#B0B0B0',
+                        cursor: 'not-allowed',
+                      },
                     }}
                   >
-                    Match Volunteer
+                    {selectedEvent ? 'Match Volunteer' : 'No Match'}
                   </Button>
                 </Box>
               </form>
@@ -144,7 +175,7 @@ function VolunteerMatchingForm() {
           </Grid>
         </Grid>
       </Container>
-    </>
+    </div>
   );
 }
 

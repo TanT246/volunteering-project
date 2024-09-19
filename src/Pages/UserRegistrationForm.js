@@ -1,11 +1,18 @@
 import React, { useState } from 'react';
-import { AppBar, Toolbar, Typography, Container, TextField, Button, Box, Grid, Paper } from '@mui/material';
-import { Link } from 'react-router-dom';  // Make sure to import Link for navigation
+import { Container, TextField, Button, Typography, Box, Grid, Paper, IconButton, InputAdornment } from '@mui/material';
+import Visibility from '@mui/icons-material/Visibility';
+import VisibilityOff from '@mui/icons-material/VisibilityOff';
 
 function UserRegistrationForm() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
+  const [showPassword, setShowPassword] = useState(false); // State to control password visibility
+
+  const validateEmail = (email) => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -15,47 +22,48 @@ function UserRegistrationForm() {
       return;
     }
 
-    setError('');
+    if (!validateEmail(email)) {
+      setError('Please enter a valid email address');
+      return;
+    }
+
+    setError(''); // Clear any previous errors
     console.log('User registered with Email:', email, 'Password:', password);
 
+    // Clear form inputs
     setEmail('');
     setPassword('');
   };
 
-  return (
-    <>
-      {/* Navigation Bar */}
-      <AppBar position="static" sx={{ backgroundColor: '#2F2F9B' }}>
-        <Toolbar>
-          <Typography variant="h6" sx={{ flexGrow: 1, fontFamily: 'Bangers, sans-serif', color: '#FFF' }}>
-            STEM Superheroes
-          </Typography>
-          <Button color="inherit" component={Link} to="/" sx={{ fontFamily: 'Permanent Marker, sans-serif', color: '#FFF', marginRight: '16px' }}>
-            Home
-          </Button>
-          <Button color="inherit" component={Link} to="/about" sx={{ fontFamily: 'Permanent Marker, sans-serif', color: '#FFF', marginRight: '16px' }}>
-            About Us
-          </Button>
-          <Button color="inherit" component={Link} to="/get-involved" sx={{ fontFamily: 'Permanent Marker, sans-serif', color: '#FFF', marginRight: '16px' }}>
-            Get Involved
-          </Button>
-          <Button color="inherit" component={Link} to="/workshops" sx={{ fontFamily: 'Permanent Marker, sans-serif', color: '#FFF' }}>
-            Workshops
-          </Button>
-        </Toolbar>
-      </AppBar>
+  const handleClickShowPassword = () => {
+    setShowPassword(!showPassword); // Toggle the visibility state
+  };
 
-      {/* Main Form */}
+  return (
+    <div
+      style={{
+        backgroundImage: `url('${process.env.PUBLIC_URL}/ivy-town.png')`, // Corrected path for image in the public folder
+        backgroundSize: 'cover', // Ensure the image covers the entire screen
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat',
+        minHeight: '100vh', // Fullscreen height
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        backgroundColor: '#0D3B66', // Add background color for better fallback
+      }}
+    >
       <Container maxWidth="sm">
-        <Grid container justifyContent="center" alignItems="center" style={{ minHeight: '100vh' }}>
+        <Grid container justifyContent="center" alignItems="center">
           <Grid item xs={12}>
             <Paper
               elevation={5}
               sx={{
                 padding: '2rem',
-                borderRadius: '12px',
-                backgroundColor: '#fff',
-                boxShadow: '0px 4px 20px rgba(0, 0, 0, 0.1)',
+                borderRadius: '16px',
+                backgroundColor: 'rgba(255, 255, 255, 0.85)', // Lower transparency
+                border: '2px solid #000', // Comic-style effect with lighter border
+                boxShadow: '0px 8px 15px rgba(0, 0, 0, 0.2)', // Softer shadow
               }}
             >
               <Typography
@@ -63,9 +71,11 @@ function UserRegistrationForm() {
                 align="center"
                 gutterBottom
                 sx={{
-                  color: '#D62828', 
+                  color: 'black',
                   fontWeight: 'bold',
-                  fontFamily: 'Bangers, sans-serif', 
+                  fontFamily: 'Bangers, sans-serif',
+                  fontSize: '2.5rem', // Increase size for better readability
+                  border: 'white'
                 }}
               >
                 User Registration
@@ -80,26 +90,42 @@ function UserRegistrationForm() {
                   margin="normal"
                   variant="outlined"
                   required
+                  error={Boolean(error)} // Indicates error on TextField
                   sx={{
                     backgroundColor: '#ffffff',
                     borderRadius: '8px',
-                    fontFamily: 'Permanent Marker, sans-serif', 
+                    fontFamily: 'Permanent Marker, sans-serif',
+                    border: error ? '2px solid red' : 'none', // Red border if there's an error
                   }}
                 />
 
                 <TextField
                   label="Password"
-                  type="password"
+                  type={showPassword ? 'text' : 'password'} // Toggle between text and password
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   fullWidth
                   margin="normal"
                   variant="outlined"
                   required
+                  error={Boolean(error)} // Indicates error on TextField
                   sx={{
                     backgroundColor: '#ffffff',
                     borderRadius: '8px',
-                    fontFamily: 'Permanent Marker, sans-serif', 
+                    fontFamily: 'Permanent Marker, sans-serif',
+                    border: error ? '2px solid red' : 'none', // Red border if there's an error
+                  }}
+                  InputProps={{
+                    endAdornment: (
+                      <InputAdornment position="end">
+                        <IconButton
+                          onClick={handleClickShowPassword}
+                          edge="end"
+                        >
+                          {showPassword ? <VisibilityOff /> : <Visibility />} {/* Show appropriate icon */}
+                        </IconButton>
+                      </InputAdornment>
+                    ),
                   }}
                 />
 
@@ -114,14 +140,15 @@ function UserRegistrationForm() {
                     type="submit"
                     variant="contained"
                     sx={{
-                      backgroundColor: '#FCBF49', 
+                      backgroundColor: '#FCBF49',
                       color: '#000',
                       '&:hover': {
                         backgroundColor: '#F2A600',
                       },
                       padding: '12px 0',
-                      fontFamily: 'Bangers, sans-serif', 
+                      fontFamily: 'Bangers, sans-serif',
                       fontWeight: 'bold',
+                      fontSize: '1.2rem', // Make button text larger
                     }}
                     fullWidth
                   >
@@ -133,7 +160,7 @@ function UserRegistrationForm() {
           </Grid>
         </Grid>
       </Container>
-    </>
+    </div>
   );
 }
 
