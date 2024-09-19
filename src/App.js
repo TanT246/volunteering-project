@@ -9,6 +9,7 @@ import Notif from './Pages/Notification'; //import home page from /pages
 import UserRegistrationForm from './Pages/UserRegistrationForm';
 import EventManager from './Pages/EventManager';
 import UserProfileManager from './Pages/UserProfileManager'
+import VolunteeringHistory from './Pages/VolunteerHistory';
 
 function App() {
   return (
@@ -24,11 +25,9 @@ function App() {
           {/* Define the route for the Volunteer Matching Form page */}
           <Route path="/volunteer-match" element={<VolunteerMatchingForm />} />
           <Route path="/event-manager" element={<EventManager />} />
-<<<<<<< HEAD
           <Route path="/user-profile-manager" element={<UserProfileManager />} />
-=======
           <Route path="/notif" element={<Notif />} />
->>>>>>> origin/main
+          <Route path="/volunteer-history" element={<VolunteeringHistory/>} />
         </Routes>
       </div>
     </Router>
