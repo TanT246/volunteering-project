@@ -21,6 +21,8 @@ function App() {
           <Route path="/Header" element={<Header />} />
           <Route path="/Login" element={<Login />} />
           <Route path="/UserRegistrationForm" element={<UserRegistrationForm />} />
+          <Route path="/register" component={UserRegistrationForm} />
+          {/* Define the route for the Volunteer Matching Form page */}
           <Route path="/volunteer-match" element={<VolunteerMatchingForm />} />
           <Route path="/event-manager" element={<EventManager />} />
           <Route path="/user-profile-manager" element={<UserProfileManager />} />
