@@ -1,92 +1,142 @@
-.event-manager-body {
-  background-color: #003049; /* Dark blue background from your palette */
-  font-family: 'Comic Sans MS', sans-serif;
-  color: #fcbf49; /* Bright yellow text */
-}
+@import url('https://fonts.googleapis.com/css2?family=Bangers&display=swap');
 
-.event-manager-container {
-  width: 60%;
-  margin: 40px auto;
-  padding: 30px;
-  background: #f77f00; /* Use the vibrant orange for background */
-  border: 5px solid #d62828; /* Red borders give a strong comic book vibe */
-  border-radius: 12px;
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
-  text-align: center;
-}
-
-.manager-heading h1 {
-  color: #003049; /* Bright green for headings */
-  font-size: 2.5rem;
-  text-transform: uppercase;
-  margin-bottom: 15px;
-}
-
-.manager-heading p {
-  font-size: 1.3rem;
-  margin-bottom: 20px;
-  color: #fcbf49; /* Subtitle with yellow */
-}
-
-.event-manager-form {
+.event-manager {
+  background-color: #1b2329; /* Background color */
+  background-image: url('../../public/PalmeraCity.png');
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
   display: flex;
-  flex-direction: column;
+  justify-content: center;
   align-items: center;
+  position: relative;
+  padding: 60px 0px; /* Adds space above and below the form */
 }
 
-.event-manager-form .form-group {
-  width: 80%;
-  margin-bottom: 15px;
-  text-align: left;
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(0.94); /* Adjust the scale factor */
+  }
+  100% {
+    transform: scale(1);
+  }
 }
 
-.event-manager-form .form-group label {
-  display: block;
-  font-size: 1.5rem;
-  color: #003049; /* Green for labels */
-  margin-bottom: 8px;
+.event-manager::before {
+  content: "";
+  background-image: url('../../public/BlueBeetle.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  position: absolute;
+  left: 2.2%;
+  bottom: 0;
+  width: 600px;
+  height: 800px;
+  z-index: 3;
+  animation: pulse 4s infinite; /* Apply the pulse animation */
 }
 
-.event-manager-form .form-group input,
-.event-manager-form .form-group textarea,
-.event-manager-form .form-group select {
+.event-manager::after {
+  content: "";
+  background: rgba(27, 35, 41, 0.30); /* Semi-transparent background color with 73% opacity */
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1; /* Positioned below the form and above the background image */
+  pointer-events: none; /* Ensures clicks pass through */
+}
+
+.event-form {
+  background-color: rgba(255, 255, 255, 0.6);
+  padding: 40px; /* Equal padding on all sides of the form */
+  border-radius: 10px;
+  width: 400px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+  text-align: center;
+  margin: 0 20px; /* Adds equal space between form and screen edges */
+  position: relative;
+  z-index: 2; /* Keeps form above BlueBeetle image and overlay */
+  font-family: 'Bangers', cursive; /* Apply comic book font */
+}
+
+.event-form h1,
+.event-form h2 {
+  color: #107faa;
+}
+
+.event-form h1 {
+  font-size: 2.3rem;
+  margin-bottom: 20px;
+}
+
+.event-form h2 {
+  margin-bottom: 20px;
+  font-size: 30px;
+}
+
+.event-form input[type="date"] {
+  padding: 8px;
+  font-family: 'Bangers', cursive; /* Apply comic book font */
+}
+
+.event-form input,
+.event-form textarea,
+.event-form select {
   width: 100%;
-  padding: 12px;
-  border: 2px solid #003049; /* Use the dark blue for inputs */
-  border-radius: 6px;
-  font-size: 1.1rem;
-  background-color: #fcbf49; /* Yellow background for input fields */
+  padding: 10px; /* Equal padding inside input boxes */
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box; /* Ensures padding doesn't overflow the box */
+  font-family: 'Bangers', cursive; /* Apply comic book font */
+}
+
+.event-form button {
+  width: 50%;
+  padding: 10px;
+  background-color: #FFA500;
   color: #003049;
-}
-
-.event-manager-form .form-group textarea {
-  height: 100px;
-}
-
-.event-manager-form .form-group input:focus,
-.event-manager-form .form-group textarea:focus,
-.event-manager-form .form-group select:focus {
-  outline: none;
-  border-color: #d62828; /* Red border on focus */
-}
-
-.submit-button {
-  background-color: #d62828; /* Bright red button */
-  color: #fff;
-  padding: 10px 30px;
   border: none;
-  font-size: 1.4rem;
+  border-radius: 5px;
   cursor: pointer;
-  border-radius: 6px;
-  transition: background-color 0.3s ease;
-  text-transform: uppercase;
-  margin-top: 20px;
+  font-size: 16px;
+  font-family: 'Bangers', cursive; /* Apply comic book font */
 }
 
-.submit-button:hover {
-  background-color: #003049; /* Dark blue hover effect */
+.event-form button:hover {
+  background-color: #ff8c00;
 }
 
-.submit-button:active {
-  transform: scale(0.98);
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  display: block;
+  text-align: left;
+  font-size: 1.2rem;
+  color: #003049;
+  margin-bottom: 5px;
+  font-family: 'Bangers', cursive; /* Apply comic book font */
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+  width: 100%;
+  padding: 10px; /* Equal padding inside input boxes */
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box; /* Ensures padding doesn't overflow the box */
+  font-family: 'Bangers', cursive; /* Apply comic book font */
+}
+
+.form-group select[multiple] {
+  height: 100px;
 }

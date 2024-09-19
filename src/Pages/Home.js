@@ -1,176 +1,241 @@
 import React from 'react';
-import { Container, Box, Typography, Button, Grid, AppBar, Toolbar, Card, CardContent } from '@mui/material';
+import { Container, Box, Typography, Button, Grid, Card, CardContent, IconButton } from '@mui/material';
+import VolunteerActivismIcon from '@mui/icons-material/VolunteerActivism'; // Example icon
+import EventAvailableIcon from '@mui/icons-material/EventAvailable'; // Example icon
+import HowToRegIcon from '@mui/icons-material/HowToReg'; // Example icon
 
 function HomePage() {
   return (
-    <Box sx={{ minHeight: '100vh', backgroundColor: '#f4f4f4' }}>
-      {/* Navigation Bar */}
-      <AppBar position="static" sx={{ backgroundColor: '#2F2F9B' }}>
-        <Toolbar>
-          <Typography variant="h6" sx={{ flexGrow: 1, fontFamily: 'Bangers, sans-serif', color: '#FFF' }}>
-            STEM Superheroes
-          </Typography>
-          <Button color="inherit" sx={{ fontFamily: 'Permanent Marker, sans-serif', color: '#FFF', marginRight: '16px' }}>Home</Button>
-          <Button color="inherit" sx={{ fontFamily: 'Permanent Marker, sans-serif', color: '#FFF', marginRight: '16px' }}>About Us</Button>
-          <Button color="inherit" sx={{ fontFamily: 'Permanent Marker, sans-serif', color: '#FFF', marginRight: '16px' }}>Get Involved</Button>
-          <Button color="inherit" sx={{ fontFamily: 'Permanent Marker, sans-serif', color: '#FFF' }}>Workshops</Button>
-        </Toolbar>
-      </AppBar>
-
+    <Box sx={{ minHeight: '100vh', backgroundColor: '#000' }}>
       {/* Hero Section */}
       <Box
         sx={{
-          backgroundImage: `url('/812dxSdkpPL._AC_UF894,1000_QL80_.jpg')`, // Add your image here
-          backgroundSize: 'cover',
-          backgroundPosition: 'center', // Center the image to ensure the circle is properly aligned
-          height: 'calc(100vh - 64px)', // Full-screen hero section minus the navbar height
+          backgroundImage: `url('${process.env.PUBLIC_URL}/batman-background.jpg')`, // Path to your Batman image
+          backgroundSize: 'cover', // Ensure the image covers the entire background
+          backgroundPosition: 'center',
+          height: '100vh', // Full-screen height
           display: 'flex',
-          alignItems: 'center', // Vertically center the content
-          justifyContent: 'center', // Horizontally center the content
+          alignItems: 'center', // Vertical alignment of content
+          justifyContent: 'space-between', // Horizontal alignment
+          padding: '0 5%', // Padding on the left and right for spacing
           color: '#FFF',
-          textAlign: 'center',
         }}
       >
         <Container>
+          <Typography
+            variant="h4"
+            sx={{
+              fontFamily: 'Arial, sans-serif',
+              color: '#A0A0A0', // Grey subheading color
+              fontSize: '1.5rem',
+              mb: 2, // Margin bottom
+            }}
+          >
+            INSPIRE THE NEXT GENERATION OF HEROES
+          </Typography>
           <Typography
             variant="h2"
             sx={{
               fontWeight: 'bold',
               fontFamily: 'Bangers, sans-serif',
-              color: '#FFF',
-              mb: 2, // Margin bottom for spacing
+              color: '#FFFFFF', // White color for "BE A"
+              fontSize: '4rem', // Larger font size for the main title
+              display: 'inline-block',
+              pr: 1,
             }}
           >
-            Be a STEM Superhero!
+            BE A
           </Typography>
           <Typography
-            variant="h6"
+            variant="h2"
             sx={{
-              color: '#FFF',
-              fontFamily: 'Permanent Marker, sans-serif',
-            }}
-          >
-            Inspire the next generation of scientists and innovators.
-          </Typography>
-          <Button
-            variant="contained"
-            sx={{
-              backgroundColor: '#FCBF49',
-              color: '#000',
-              '&:hover': {
-                backgroundColor: '#F2A600',
-              },
-              padding: '12px 24px',
-              fontSize: '1rem',
               fontWeight: 'bold',
               fontFamily: 'Bangers, sans-serif',
-              mt: 3, // Added margin-top for spacing
+              color: '#00FF00', // Green color for "STEM"
+              fontSize: '4rem', // Same size for continuity
+              display: 'inline-block',
+              pr: 1,
             }}
           >
-            Get Involved
-          </Button>
+            STEM
+          </Typography>
+          <Typography
+            variant="h2"
+            sx={{
+              fontWeight: 'bold',
+              fontFamily: 'Bangers, sans-serif',
+              color: '#FFC107', // Yellow color for "SUPERHERO!"
+              fontSize: '4rem',
+              display: 'inline-block',
+            }}
+          >
+            SUPERHERO!
+          </Typography>
+          <Box mt={4}>
+            <Button
+              variant="contained"
+              sx={{
+                backgroundColor: '#D62828', // Red button color
+                color: '#FFF',
+                fontFamily: 'Bangers, sans-serif',
+                fontWeight: 'bold',
+                padding: '12px 36px',
+                fontSize: '1.2rem',
+                '&:hover': {
+                  backgroundColor: '#C62828',
+                },
+              }}
+            >
+              START
+            </Button>
+          </Box>
         </Container>
+        <Box
+          sx={{
+            backgroundImage: `url('${process.env.PUBLIC_URL}/batman-image.png')`, // Path to Batman image in public folder
+            backgroundSize: 'contain',
+            backgroundRepeat: 'no-repeat',
+            backgroundPosition: 'right',
+            width: '40%',
+            height: '100%',
+          }}
+        />
       </Box>
 
-      {/* Volunteer Information Section */}
-      <Container sx={{ mt: 8 }}>
-        <Typography
-          variant="h3"
-          sx={{
-            fontFamily: 'Bangers, sans-serif',
-            textAlign: 'center',
-            color: '#D62828',
-            mb: 4,
-          }}
-        >
-          What You Can Do
-        </Typography>
-        <Grid container spacing={4}>
-          <Grid item xs={12} sm={6} md={4}>
-            <Card sx={{ minHeight: '250px' }}>
-              <CardContent>
-                <Typography variant="h5" sx={{ fontFamily: 'Permanent Marker, sans-serif', mb: 2 }}>
-                  Lead Workshops
-                </Typography>
-                <Typography variant="body1">
-                  Help lead fun, hands-on STEM workshops for kids and inspire the next generation of engineers and scientists.
-                </Typography>
-              </CardContent>
-            </Card>
-          </Grid>
-          <Grid item xs={12} sm={6} md={4}>
-            <Card sx={{ minHeight: '250px' }}>
-              <CardContent>
-                <Typography variant="h5" sx={{ fontFamily: 'Permanent Marker, sans-serif', mb: 2 }}>
-                  Mentor Students
-                </Typography>
-                <Typography variant="body1">
-                  Become a mentor and provide guidance, encouragement, and support to students in their STEM journey.
-                </Typography>
-              </CardContent>
-            </Card>
-          </Grid>
-          <Grid item xs={12} sm={6} md={4}>
-            <Card sx={{ minHeight: '250px' }}>
-              <CardContent>
-                <Typography variant="h5" sx={{ fontFamily: 'Permanent Marker, sans-serif', mb: 2 }}>
-                  Plan Events
-                </Typography>
-                <Typography variant="body1">
-                  Join our event planning team and help organize exciting STEM events for the community.
-                </Typography>
-              </CardContent>
-            </Card>
-          </Grid>
-        </Grid>
-      </Container>
+      {/* What to Know Section with Light Blue Background */}
+      <Box sx={{ backgroundColor: '#ADD8E6', py: 8 }}> {/* Light Blue Background */}
+        <Container>
+          <Typography
+            variant="h3"
+            sx={{
+              fontFamily: 'Bangers, sans-serif',
+              textAlign: 'center',
+              color: '#000', // Black text for the title
+              mb: 4,
+            }}
+          >
+            What You Need to Know
+          </Typography>
+          <Grid container spacing={4}>
+            {/* Card 1 */}
+            <Grid item xs={12} sm={6} md={4}>
+              <Card
+                sx={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                  justifyContent: 'space-between',
+                  minHeight: '300px', // Set a fixed height for all cards
+                  transition: 'transform 0.3s, box-shadow 0.3s', // Transition for hover effects
+                  '&:hover': {
+                    transform: 'scale(1.05)', // Slight zoom effect on hover
+                    boxShadow: '0px 10px 20px rgba(0,0,0,0.2)', // Larger shadow on hover
+                  },
+                }}
+              >
+                <CardContent>
+                  <IconButton>
+                    <VolunteerActivismIcon fontSize="large" sx={{ color: '#00FF00' }} /> {/* Green icon */}
+                  </IconButton>
+                  <Typography variant="h5" sx={{ fontFamily: 'Permanent Marker, sans-serif', mb: 2 }}>
+                    Learn About Volunteering
+                  </Typography>
+                  <Typography variant="body1" sx={{ fontFamily: 'Roboto, sans-serif' }}>
+                    Discover the benefits of volunteering and how you can make a difference in your community.
+                  </Typography>
+                </CardContent>
+                <Box sx={{ textAlign: 'center', pb: 2 }}>
+                  <Button
+                    variant="outlined"
+                    sx={{ color: '#00FF00', borderColor: '#00FF00', '&:hover': { borderColor: '#00FF00' } }}
+                  >
+                    Learn More
+                  </Button>
+                </Box>
+              </Card>
+            </Grid>
 
-      {/* Upcoming Workshops Section (Now Blank) */}
-      <Container sx={{ mt: 8, mb: 8 }}>
-        <Typography
-          variant="h3"
-          sx={{
-            fontFamily: 'Bangers, sans-serif',
-            textAlign: 'center',
-            color: '#2F2F9B',
-            mb: 4,
-          }}
-        >
-          Upcoming Workshops
-        </Typography>
-        <Grid container spacing={4}>
-          <Grid item xs={12} sm={6}>
-            <Card>
-              <CardContent>
-                <Typography variant="h5" sx={{ fontFamily: 'Permanent Marker, sans-serif', mb: 2 }}>
-                  {/* Title and details intentionally left blank */}
-                </Typography>
-                <Typography variant="body1">
-                  {/* Description intentionally left blank */}
-                </Typography>
-              </CardContent>
-            </Card>
+            {/* Card 2 */}
+            <Grid item xs={12} sm={6} md={4}>
+              <Card
+                sx={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                  justifyContent: 'space-between',
+                  minHeight: '300px',
+                  transition: 'transform 0.3s, box-shadow 0.3s',
+                  '&:hover': {
+                    transform: 'scale(1.05)',
+                    boxShadow: '0px 10px 20px rgba(0,0,0,0.2)',
+                  },
+                }}
+              >
+                <CardContent>
+                  <IconButton>
+                    <HowToRegIcon fontSize="large" sx={{ color: '#D62828' }} /> {/* Red icon */}
+                  </IconButton>
+                  <Typography variant="h5" sx={{ fontFamily: 'Permanent Marker, sans-serif', mb: 2 }}>
+                    How to Get Involved
+                  </Typography>
+                  <Typography variant="body1" sx={{ fontFamily: 'Roboto, sans-serif' }}>
+                    Sign up for events and join workshops that suit your interests and skills.
+                  </Typography>
+                </CardContent>
+                <Box sx={{ textAlign: 'center', pb: 2 }}>
+                  <Button
+                    variant="outlined"
+                    sx={{ color: '#D62828', borderColor: '#D62828', '&:hover': { borderColor: '#D62828' } }}
+                  >
+                    Get Involved
+                  </Button>
+                </Box>
+              </Card>
+            </Grid>
+
+            {/* Card 3 */}
+            <Grid item xs={12} sm={6} md={4}>
+              <Card
+                sx={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                  justifyContent: 'space-between',
+                  minHeight: '300px',
+                  transition: 'transform 0.3s, box-shadow 0.3s',
+                  '&:hover': {
+                    transform: 'scale(1.05)',
+                    boxShadow: '0px 10px 20px rgba(0,0,0,0.2)',
+                  },
+                }}
+              >
+                <CardContent>
+                  <IconButton>
+                    <EventAvailableIcon fontSize="large" sx={{ color: '#FFC107' }} /> {/* Yellow icon */}
+                  </IconButton>
+                  <Typography variant="h5" sx={{ fontFamily: 'Permanent Marker, sans-serif', mb: 2 }}>
+                    Upcoming Opportunities
+                  </Typography>
+                  <Typography variant="body1" sx={{ fontFamily: 'Roboto, sans-serif' }}>
+                    Stay updated on the latest events where you can lend your talents and be a hero.
+                  </Typography>
+                </CardContent>
+                <Box sx={{ textAlign: 'center', pb: 2 }}>
+                  <Button
+                    variant="outlined"
+                    sx={{ color: '#FFC107', borderColor: '#FFC107', '&:hover': { borderColor: '#FFC107' } }}
+                  >
+                    See Events
+                  </Button>
+                </Box>
+              </Card>
+            </Grid>
           </Grid>
-          <Grid item xs={12} sm={6}>
-            <Card>
-              <CardContent>
-                <Typography variant="h5" sx={{ fontFamily: 'Permanent Marker, sans-serif', mb: 2 }}>
-                  {/* Title and details intentionally left blank */}
-                </Typography>
-                <Typography variant="body1">
-                  {/* Description intentionally left blank */}
-                </Typography>
-              </CardContent>
-            </Card>
-          </Grid>
-        </Grid>
-      </Container>
+        </Container>
+      </Box>
 
       {/* Footer Section */}
       <Box
         sx={{
           backgroundColor: '#000',
-          color: '#FCBF49',
+          color: '#FCBF49', // Yellow color from your theme
           textAlign: 'center',
           padding: '16px 0',
           marginTop: 'auto',
@@ -180,8 +245,8 @@ function HomePage() {
           © 2024 STEM Superheroes - All Rights Reserved
         </Typography>
         <Box sx={{ mt: 2 }}>
-          <Button color="inherit">Privacy Policy</Button>
-          <Button color="inherit">Terms of Service</Button>
+          <Button color="inherit" sx={{ fontFamily: 'Permanent Marker, sans-serif' }}>Privacy Policy</Button>
+          <Button color="inherit" sx={{ fontFamily: 'Permanent Marker, sans-serif' }}>Terms of Service</Button>
         </Box>
       </Box>
     </Box>
