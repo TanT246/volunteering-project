@@ -17,11 +17,7 @@ const AboutUs = () => {
         <div className="content">
           <h2>Our Mission</h2>
           <p>
-            STEM Superheroes is a volunteer-driven organization dedicated to empowering
-            the next generation of scientists, engineers, and innovators. Our mission
-            is to provide underrepresented students with access to hands-on STEM
-            activities, mentorship opportunities, and educational resources to ignite
-            a lifelong passion for science, technology, engineering, and mathematics.
+          At STEM Superheroes, we’re on a heroic quest to empower the next generation of scientists, engineers, and innovators! Our mission is to equip underrepresented students with the tools they need to unlock their potential through exhilarating hands-on STEM activities, mentorship from seasoned heroes, and invaluable educational resources. Together, we ignite a lifelong passion for science, technology, engineering, and mathematics, shaping the heroes of tomorrow!
           </p>
         </div>
       </section>
@@ -32,27 +28,27 @@ const AboutUs = () => {
         <div className="team-container">
           <div className="team-member">
             <img src="/batman.png" alt="Xavier" />
-            <h3>John Doe</h3>
-            <p>Founder & CEO</p>
-            <p>John is a passionate educator and engineer who founded STEM Superheroes with the goal of inspiring future generations in STEM fields.</p>
+            <h3>Xavier "The Innovator" Mares</h3>
+            <p><strong>Founder & CEO</strong></p>
+            <p>At the helm of our heroic journey, Xavier spearheads our initiatives with groundbreaking ideas and an unparalleled passion that ignites the hearts of everyone around him!</p>
           </div>
           <div className="team-member">
             <img src="/flash.png" alt="Tan" />
-            <h3>Jane Smith</h3>
-            <p>Program Director</p>
-            <p>Jane is responsible for overseeing all STEM programs and ensuring students get the most out of their hands-on experiences.</p>
+            <h3>Tan "Brainiac" Tran</h3>
+            <p><strong>Program Director</strong></p>
+            <p>As the mastermind behind our STEM initiatives, Tan ensures that every student embarks on an epic journey, maximizing their hands-on experiences in the world of science and technology.</p>
           </div>
           <div className="team-member">
             <img src="/powergirl.png" alt="Shinelle" />
-            <h3>Emily Brown</h3>
-            <p>Volunteer Coordinator</p>
-            <p>Emily manages our wonderful volunteers and ensures that each STEM Superhero has the support they need to succeed.</p>
+            <h3>Shinelle "The Connector" Baretto</h3>
+            <p><strong>Outreach Specialist</strong></p>
+            <p>With the magnetic charm of a true hero, Shinelle unites communities through her boundless energy and unwavering determination, bringing people together to amplify our mission!</p>
           </div>
           <div className="team-member">
             <img src="/bumblebee.png" alt="Widyan" />
-            <h3>Michael Lee</h3>
-            <p>Outreach Specialist</p>
-            <p>Michael works to build partnerships with schools and organizations to bring our STEM programs to underserved communities.</p>
+            <h3>Widyan "The Protector" Hussien</h3>
+            <p><strong>Volunteer Coordinator</strong></p>
+            <p>Widyan , our guiding star, rallies our incredible volunteers, making sure that each STEM Superhero is equipped with the support and resources they need to soar to new heights!</p>
           </div>
         </div>
       </section>

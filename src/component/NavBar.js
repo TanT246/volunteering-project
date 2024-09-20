@@ -10,6 +10,7 @@ const NavBar = () => {
       </div>
       <ul className="nav-menu">
         <li><a href="/">Home</a></li>
+        <li><a href="/about">About Us</a></li>
         <li><a href="/login">Login</a></li>
         <li><a href="/UserRegistrationForm">Register</a></li>
         <li className="nav-dropdown">
