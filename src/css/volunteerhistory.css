@@ -12,10 +12,10 @@
 
 /* Character Image Styling */
 .character-img {
-  position: fixed;
-  bottom: -2rem;
+  position: absolute;
+  bottom: 4.5rem;
   right: -2rem;
-  width: 24.5rem;
+  width: 23.5rem;
   height: auto;
   z-index: 2;
   animation: pulse 2s infinite;

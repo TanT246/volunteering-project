@@ -21,7 +21,6 @@ function VolunteerMatchingForm() {
   const [selectedEvent, setSelectedEvent] = useState('');
 
   useEffect(() => {
-    // Reset the matched events and selected event when the volunteer changes
     setMatchedEvents([]);
     setSelectedEvent('');
   }, [selectedVolunteer]);
@@ -35,7 +34,7 @@ function VolunteerMatchingForm() {
       event => event.skillsRequired.includes(volunteer.skills) && event.location === volunteer.location
     );
 
-    setMatchedEvents(matches); // Store all matching events
+    setMatchedEvents(matches);
   };
 
   const handleSubmit = (e) => {
@@ -59,8 +58,24 @@ function VolunteerMatchingForm() {
         justifyContent: 'center',
         backgroundColor: '#202020',
         padding: '2rem',
+        position: 'relative',
       }}
     >
+      {/* Flash character image with shake animation */}
+      <img
+        src={`${process.env.PUBLIC_URL}/flash.png`} 
+        alt="Flash Character"
+        style={{
+          position: 'absolute',
+          left: '0', 
+          top: '50%', 
+          transform: 'translate(50%, -50%)', 
+          width: '22vw', 
+          zIndex: 1, 
+          animation: 'shake 0.5s ease-in-out infinite' 
+        }}
+      />
+
       <Container maxWidth="md">
         <Grid container justifyContent="center" alignItems="center">
           <Grid item xs={12} sm={8} md={6}>
@@ -175,6 +190,19 @@ function VolunteerMatchingForm() {
           </Grid>
         </Grid>
       </Container>
+
+      {/* Keyframes for shaking animation */}
+      <style>
+        {`
+          @keyframes shake {
+            0% { transform: translate(50%, -50%) translateX(0); }
+            25% { transform: translate(50%, -50%) translateX(-2px); }
+            50% { transform: translate(50%, -50%) translateX(0); }
+            75% { transform: translate(50%, -50%) translateX(2px); }
+            100% { transform: translate(50%, -50%) translateX(0); }
+          }
+        `}
+      </style>
     </div>
   );
 }
