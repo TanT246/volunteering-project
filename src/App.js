@@ -28,10 +28,7 @@ function App() {
           <Route path="/event-manager" element={<EventManager />} />
           <Route path="/user-profile-manager" element={<UserProfileManager />} />
           <Route path="/notif" element={<Notif />} />
-<<<<<<< HEAD
-=======
           <Route path="/volunteer-history" element={<VolunteeringHistory/>} />
->>>>>>> origin/main
         </Routes>
       </div>
     </Router>
