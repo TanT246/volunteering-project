@@ -4,6 +4,8 @@ import VolunteerActivismIcon from '@mui/icons-material/VolunteerActivism';
 import EventAvailableIcon from '@mui/icons-material/EventAvailable'; 
 import HowToRegIcon from '@mui/icons-material/HowToReg'; 
 
+
+
 function HomePage() {
   return (
     <Box sx={{ minHeight: '100vh', backgroundColor: '#000' }}>

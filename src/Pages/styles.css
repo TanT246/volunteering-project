@@ -1,4 +1,5 @@
-body {
+.profile-page {
+    /* Apply styles only to the .profile-page container */
     margin: 0;
     padding: 0;
     font-family: 'Arial', sans-serif;
@@ -6,25 +7,24 @@ body {
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
-    height: 125vh;
+    height: 150vh;
     display: flex;
     justify-content: center;
     align-items: flex-start; /* Align items closer to the top for more visible space */
-    z-index: auto;
+    z-index: 1;
   }
   
-/* New CSS for the image */
-.center-image {
-    position: absolute; /* Position the image absolutely within the container */
+  .profile-page .center-image {
+    position: fixed; /* Position the image absolutely within the container */
     top: 5px;
     bottom: 0px; /* Adjust distance from the bottom */
     right: 175px; /* Adjust distance from the right */
     width: 950px; /* Adjust width as needed */
     height: 950px; /* Maintain aspect ratio */
-    z-index: 1; /* Ensure the image appears above other content */
+    z-index: 2; /* Ensure the image appears above other content */
   }
-
-  h4 {
+  
+  .profile-page h4 {
     text-align: center;
     color: #5C9A43; /* Muted green for the title to match the Turtle theme */
     font-size: 2.5rem; /* Slightly smaller font size */
@@ -32,9 +32,11 @@ body {
     margin-top: 20px; /* Bring header down */
     z-index: 99; /* Highest z-index */
     position: relative; /* Ensure z-index works */
-  }  
+    -webkit-text-stroke: 1px black;
+    font-weight: bold;
+  }
   
-  form {
+  .profile-page form {
     background: rgba(255, 255, 255, 0.70); /* Slightly transparent background to show the theme */
     padding: 20px;
     border-radius: 10px;
@@ -45,15 +47,15 @@ body {
     z-index: 5;
   }
   
-  .MuiFormControl-root {
+  .profile-page .MuiFormControl-root {
     margin-bottom: 1rem; /* Slightly reduce margin between form elements */
   }
   
-  .MuiButton-containedPrimary {
+  .profile-page .MuiButton-containedPrimary {
     background-color: #D32F2F; /* Red to match Raphael's color */
   }
   
-  input, textarea, select {
+  .profile-page input, .profile-page textarea, .profile-page select {
     background: rgba(255, 255, 255, 0.85);
     border: 2px solid #5C9A43;
     border-radius: 5px;
@@ -62,11 +64,11 @@ body {
     font-size: 1rem;
   }
   
-  input::placeholder, textarea::placeholder {
+  .profile-page input::placeholder, .profile-page textarea::placeholder {
     color: rgba(92, 154, 67, 0.8); /* Placeholder text matching the green color */
   }
   
-  .MuiButton-root {
+  .profile-page .MuiButton-root {
     margin-top: 10px;
     width: 100%;
     padding: 12px;
@@ -75,14 +77,11 @@ body {
     font-size: 1.2rem;
   }
   
-  .MuiFormControlLabel-root .MuiCheckbox-root {
+  .profile-page .MuiFormControlLabel-root .MuiCheckbox-root {
     color: #FFC107; /* Yellow for checkbox, matching Michelangelo's band */
   }
   
-  /* Start & End buttons customization */
-  .MuiPickersDay-root.Mui-selected {
+  .profile-page .MuiPickersDay-root.Mui-selected {
     background-color: #1976D2; /* Blue for Leonardo */
   }
-  
-  
   
