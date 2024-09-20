@@ -63,7 +63,7 @@ function VolunteerMatchingForm() {
     >
       {/* Flash character image with shake animation */}
       <img
-        src={`${process.env.PUBLIC_URL}/flash.png`} 
+        src={`${process.env.PUBLIC_URL}/theflash.png`} 
         alt="Flash Character"
         style={{
           position: 'absolute',
