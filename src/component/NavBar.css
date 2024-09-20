@@ -1,0 +1,120 @@
+/* NavBar.css */
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap'); /* Comic book font for title */
+@import url('https://fonts.googleapis.com/css2?family=Bangers&display=swap'); /* Comic book font for nav items */
+
+.nav-bar {
+    display: flex;
+    align-items: center;
+    background: linear-gradient(135deg, rgba(150, 0, 0, 0.8), rgba(0, 0, 150, 0.8)); /* Darker red to blue gradient */
+    padding: 4px 8px; /* Reduced padding for height */
+    position: relative;
+    z-index: 100;
+    height: 2.5rem; /* Reduced height */
+}
+
+.nav-logo {
+    display: flex;
+    align-items: center;
+}
+
+.nav-icon {
+    width: 1.8rem; /* Smaller icon size */
+    height: 1.8rem;
+    border: 1px solid #FFD700; /* Thinner border */
+    border-radius: 50%; /* Rounded borders */
+    background: radial-gradient(circle, rgba(255, 69, 0, 0.8), rgba(255, 20, 147, 0.8)); /* Radial gradient */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2px; /* Reduced padding */
+}
+
+.nav-icon img {
+    width: 100%;
+    height: 100%;
+}
+
+.nav-title {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 1.2rem; /* Reduced title font size */
+    color: #FFD700; /* Gold color for the title */
+    text-shadow: 2px 2px 4px #000; /* Dramatic shadow */
+    margin-left: 8px; /* Margin */
+}
+
+.nav-menu {
+    display: flex;
+    list-style: none;
+    margin-left: auto;
+}
+
+.nav-menu li {
+    margin-left: 15px; /* Spacing between items */
+}
+
+.nav-menu a {
+    color: #FFD700; /* Gold text color */
+    text-decoration: none;
+    font-family: 'Bangers', cursive; /* Comic book font for nav items */
+    font-size: 1.2rem; /* Slightly smaller font size */
+    padding: 1px 3px; /* Padding */
+    transition: color 0.3s, background-color 0.3s;
+}
+
+.nav-menu a:hover {
+    background-color: rgba(255, 255, 255, 0.2); /* Light hover effect */
+    color: #FFF; /* White text on hover for contrast */
+    border-radius: 3px; /* Slightly rounded corners */
+}
+
+.nav-dropdown {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.nav-dropdown-icon {
+    width: 1.8rem; /* Smaller icon size */
+    height: 1.8rem;
+    cursor: pointer;
+    border: 1px solid #FFD700; /* Thinner border */
+    border-radius: 50%; /* Rounded borders */
+    background: radial-gradient(circle, rgba(0, 255, 255, 0.8), rgba(0, 100, 255, 0.8)); /* Radial gradient */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.nav-dropdown-content {
+    display: none;
+    position: absolute;
+    top: 100%;
+    right: 0; /* Align dropdown to the right side of the icon */
+    background-color: rgba(0, 0, 0, 0.8); /* Darker background for dropdown */
+    color: #FFD700; /* Gold text color */
+    list-style: none;
+    padding: 6px; /* Padding */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4); /* Shadow */
+    z-index: 1000; /* Ensure dropdown is on top of other elements */
+    white-space: nowrap; /* Prevent text from wrapping */
+    border-radius: 5px; /* Rounded corners */
+}
+
+.nav-dropdown:hover .nav-dropdown-content {
+    display: block;
+}
+
+.nav-dropdown-content a {
+    color: #FFD700; /* Gold text color */
+    text-decoration: none;
+    display: block;
+    padding: 4px 8px; /* Padding */
+    font-size: 1.2rem; /* Slightly smaller font size */
+    font-family: 'Bangers', cursive; /* Comic book font for dropdown items */
+    transition: background-color 0.3s;
+}
+
+.nav-dropdown-content a:hover {
+    background-color: rgba(255, 255, 255, 0.3); /* Light hover effect */
+    border-radius: 3px; /* Rounded corners */
+}
