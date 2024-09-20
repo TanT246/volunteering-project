@@ -53,7 +53,6 @@
     bottom: 10px; /* Adjust distance from the bottom */
     right: 0px; /* Adjust distance from the right */
     bottom: 0px;/* Adjust distance from the bottom */
-    width: 450px; /* Adjust width as needed */
-    height: 450px; /* Maintain aspect ratio */
+    width: 24vw;
     z-index: 10; /* Ensure the image appears above other content */
 }

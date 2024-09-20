@@ -99,10 +99,10 @@ function HomePage() {
             backgroundSize: 'contain',
             backgroundRepeat: 'no-repeat',
             backgroundPosition: 'right',
-            width: '40%', // Adjust width to fit layout
+            width: '58%', 
             height: '100%',
             position: 'absolute',
-            right: '0', // Position Batman image to the right
+            right: '0', 
             top: '0',
           }}
         />
