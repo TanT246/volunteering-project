@@ -1,0 +1,39 @@
+/* MultiSelectDropdown.css */
+.multi-select-dropdown {
+    position: relative;
+    width: 100%;
+  }
+  
+  .dropdown-header {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    cursor: pointer;
+    background-color: #fff;
+  }
+  
+  .dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #fff;
+    z-index: 10;
+    max-height: 150px;
+    overflow-y: auto;
+  }
+  
+  .dropdown-item {
+    padding: 10px;
+    cursor: pointer;
+  }
+  
+  .dropdown-item:hover {
+    background-color: #f0f0f0;
+  }
+  
+  .dropdown-item.selected {
+    background-color: #d0e0ff;
+  }  

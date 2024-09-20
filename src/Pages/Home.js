@@ -10,7 +10,7 @@ function HomePage() {
       {/* Hero Section */}
       <Box
         sx={{
-          backgroundImage: `url('${process.env.PUBLIC_URL}/7023933.png')`, // Use your first background image
+          backgroundImage: `url('${process.env.PUBLIC_URL}/7023933.png')`, // Use first background image
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           height: '100vh',
@@ -97,7 +97,7 @@ function HomePage() {
             backgroundSize: 'contain',
             backgroundRepeat: 'no-repeat',
             backgroundPosition: 'right',
-            width: '40%', // Adjust width to fit your layout
+            width: '40%', // Adjust width to fit layout
             height: '100%',
             position: 'absolute',
             right: '0', // Position Batman image to the right
@@ -257,4 +257,4 @@ function HomePage() {
   );
 }
 
-export default HomePage;
+export default HomePage; 

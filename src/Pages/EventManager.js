@@ -1,48 +1,107 @@
-import React from 'react';
-import './EventManager.css';  // Import the CSS for styling
+import React, { useState } from 'react';
+import './EventManager.css';
+import MultiSelectDropdown from './MultiSelectDropdown'; // Matches the file name exactly
 
-const EventManager = () => {
+function EventManager() {
+  const [formData, setFormData] = useState({
+    eventName: '',
+    eventDescription: '',
+    location: '',
+    eventDate: '',
+    urgency: '',
+    requiredSkills: []
+  });
+
+  const skillsOptions = ['Coding', 'Teamwork', 'Communication', 'Leadership'];
+  const urgencyOptions = ['Low', 'Medium', 'High'];
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prevData) => ({ ...prevData, [name]: value }));
+  };
+
+  const handleSkillsChange = (selectedSkills) => {
+    setFormData((prevData) => ({ ...prevData, requiredSkills: selectedSkills }));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(formData);
+  };
+
   return (
-    <div className="event-manager-container">
-      <div className="manager-heading">
-        <h1>Manage Your Event</h1>
-        <p>Step into the hero's shoes and organize your next adventure!</p>
-      </div>
-      
-      <form className="event-manager-form">
+    <div className="event-manager">
+      <form className="event-form" onSubmit={handleSubmit}>
+        <h1>EVENT MANAGER</h1>
         <div className="form-group">
           <label>Event Name</label>
-          <input type="text" placeholder="Enter event name" maxLength="100" required />
+          <input
+            type="text"
+            name="eventName"
+            value={formData.eventName}
+            maxLength="100"
+            onChange={handleInputChange}
+            required
+          />
         </div>
-
         <div className="form-group">
           <label>Event Description</label>
-          <textarea placeholder="Enter event description" required></textarea>
+          <textarea
+            name="eventDescription"
+            value={formData.eventDescription}
+            onChange={handleInputChange}
+            required
+          />
         </div>
-
-        <div className="form-group">
-          <label>Event Date</label>
-          <input type="date" required />
-        </div>
-
         <div className="form-group">
           <label>Location</label>
-          <input type="text" placeholder="Enter event location" required />
+          <textarea
+            name="location"
+            value={formData.location}
+            onChange={handleInputChange}
+            required
+          />
         </div>
-
         <div className="form-group">
-          <label>Urgency Level</label>
-          <select required>
-            <option>Low</option>
-            <option>Medium</option>
-            <option>High</option>
+          <label>Event Date</label>
+          <input
+            type="date"
+            name="eventDate"
+            value={formData.eventDate}
+            onChange={handleInputChange}
+            required
+          />
+        </div>
+        <div className="form-group">
+          <label>Urgency</label>
+          <select
+            name="urgency"
+            value={formData.urgency}
+            onChange={handleInputChange}
+            required
+          >
+            <option value="">Select Urgency</option>
+            {urgencyOptions.map((option, index) => (
+              <option key={index} value={option}>
+                {option}
+              </option>
+            ))}
           </select>
         </div>
-
-        <button type="submit" className="submit-button">Update Event</button>
+        <div className="form-group">
+          <label>Required Skills</label>
+          <MultiSelectDropdown
+            options={skillsOptions}
+            selectedOptions={formData.requiredSkills}
+            onChange={handleSkillsChange}
+          />
+        </div>
+        <button type="submit" className="submit-btn">
+          Submit
+        </button>
       </form>
     </div>
   );
-};
+}
 
 export default EventManager;
