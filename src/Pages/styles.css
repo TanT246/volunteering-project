@@ -1,0 +1,88 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+    background-image: url('https://wallpapercave.com/wp/wp7962480.jpg'); /* Path to the Ninja Turtles image */
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 125vh;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* Align items closer to the top for more visible space */
+    z-index: auto;
+  }
+  
+/* New CSS for the image */
+.center-image {
+    position: absolute; /* Position the image absolutely within the container */
+    top: 5px;
+    bottom: 0px; /* Adjust distance from the bottom */
+    right: 175px; /* Adjust distance from the right */
+    width: 950px; /* Adjust width as needed */
+    height: 950px; /* Maintain aspect ratio */
+    z-index: 1; /* Ensure the image appears above other content */
+  }
+
+  h4 {
+    text-align: center;
+    color: #5C9A43; /* Muted green for the title to match the Turtle theme */
+    font-size: 2.5rem; /* Slightly smaller font size */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+    margin-top: 20px; /* Bring header down */
+    z-index: 99; /* Highest z-index */
+    position: relative; /* Ensure z-index works */
+  }  
+  
+  form {
+    background: rgba(255, 255, 255, 0.70); /* Slightly transparent background to show the theme */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    width: 400px; /* Reduce the form width */
+    margin-top: 10px; /* Add some space from the top to make header visible */
+    position: relative; /* Ensure the form sits within the normal document flow */
+    z-index: 5;
+  }
+  
+  .MuiFormControl-root {
+    margin-bottom: 1rem; /* Slightly reduce margin between form elements */
+  }
+  
+  .MuiButton-containedPrimary {
+    background-color: #D32F2F; /* Red to match Raphael's color */
+  }
+  
+  input, textarea, select {
+    background: rgba(255, 255, 255, 0.85);
+    border: 2px solid #5C9A43;
+    border-radius: 5px;
+    padding: 10px;
+    width: 100%;
+    font-size: 1rem;
+  }
+  
+  input::placeholder, textarea::placeholder {
+    color: rgba(92, 154, 67, 0.8); /* Placeholder text matching the green color */
+  }
+  
+  .MuiButton-root {
+    margin-top: 10px;
+    width: 100%;
+    padding: 12px;
+    color: white;
+    text-transform: none;
+    font-size: 1.2rem;
+  }
+  
+  .MuiFormControlLabel-root .MuiCheckbox-root {
+    color: #FFC107; /* Yellow for checkbox, matching Michelangelo's band */
+  }
+  
+  /* Start & End buttons customization */
+  .MuiPickersDay-root.Mui-selected {
+    background-color: #1976D2; /* Blue for Leonardo */
+  }
+  
+  
+  

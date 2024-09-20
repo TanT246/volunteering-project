@@ -6,7 +6,8 @@ import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { DateRangePicker } from '@mui/x-date-pickers-pro/DateRangePicker';
 import { ListItemText } from '@mui/material';
-import styles from './styles';
+import styles from './styles.css';
+//import styles from './styles';
 const { multiSelectStyles } = styles;
 
 
@@ -87,8 +88,10 @@ const ProfileForm = () => {
     });
   };
 
+
   return (
     <LocalizationProvider dateAdapter={AdapterDateFns}>
+    <img src="/TMNT drawing.png" alt="Turtle" className="center-image" />
       <Box sx={{ maxWidth: 600, mx: 'auto', p: 3 }}>
         <Typography variant="h4" gutterBottom>
           User Profile
@@ -198,5 +201,7 @@ const ProfileForm = () => {
     </LocalizationProvider>
   );
 };
+
+
 
 export default ProfileForm;
