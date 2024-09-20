@@ -25,11 +25,8 @@ function App() {
           {/* Define the route for the Volunteer Matching Form page */}
           <Route path="/volunteer-match" element={<VolunteerMatchingForm />} />
           <Route path="/event-manager" element={<EventManager />} />
-<<<<<<< HEAD
           <Route path="/user-profile-manager" element={<UserProfileManager />} />
-=======
           <Route path="/notif" element={<Notif />} />
->>>>>>> origin/main
         </Routes>
       </div>
     </Router>
