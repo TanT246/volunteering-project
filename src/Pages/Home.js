@@ -1,8 +1,10 @@
 import React from 'react';
 import { Container, Box, Typography, Button, Grid, Card, CardContent, IconButton } from '@mui/material';
-import VolunteerActivismIcon from '@mui/icons-material/VolunteerActivism'; // Example icon
-import EventAvailableIcon from '@mui/icons-material/EventAvailable'; // Example icon
-import HowToRegIcon from '@mui/icons-material/HowToReg'; // Example icon
+import VolunteerActivismIcon from '@mui/icons-material/VolunteerActivism'; 
+import EventAvailableIcon from '@mui/icons-material/EventAvailable'; 
+import HowToRegIcon from '@mui/icons-material/HowToReg'; 
+
+
 
 function HomePage() {
   return (
@@ -10,14 +12,15 @@ function HomePage() {
       {/* Hero Section */}
       <Box
         sx={{
-          backgroundImage: `url('${process.env.PUBLIC_URL}/batman-background.jpg')`, // Path to your Batman image
-          backgroundSize: 'cover', // Ensure the image covers the entire background
+          backgroundImage: `url('${process.env.PUBLIC_URL}/7023933.png')`, // Use first background image
+          backgroundSize: 'cover',
           backgroundPosition: 'center',
-          height: '100vh', // Full-screen height
+          height: '100vh',
           display: 'flex',
-          alignItems: 'center', // Vertical alignment of content
-          justifyContent: 'space-between', // Horizontal alignment
-          padding: '0 5%', // Padding on the left and right for spacing
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          padding: '0 5%',
+          position: 'relative', // Set relative to position Batman image
           color: '#FFF',
         }}
       >
@@ -26,9 +29,9 @@ function HomePage() {
             variant="h4"
             sx={{
               fontFamily: 'Arial, sans-serif',
-              color: '#A0A0A0', // Grey subheading color
+              color: '#A0A0A0',
               fontSize: '1.5rem',
-              mb: 2, // Margin bottom
+              mb: 2,
             }}
           >
             INSPIRE THE NEXT GENERATION OF HEROES
@@ -38,8 +41,8 @@ function HomePage() {
             sx={{
               fontWeight: 'bold',
               fontFamily: 'Bangers, sans-serif',
-              color: '#FFFFFF', // White color for "BE A"
-              fontSize: '4rem', // Larger font size for the main title
+              color: '#FFFFFF',
+              fontSize: '4rem',
               display: 'inline-block',
               pr: 1,
             }}
@@ -51,8 +54,8 @@ function HomePage() {
             sx={{
               fontWeight: 'bold',
               fontFamily: 'Bangers, sans-serif',
-              color: '#00FF00', // Green color for "STEM"
-              fontSize: '4rem', // Same size for continuity
+              color: '#00FF00',
+              fontSize: '4rem',
               display: 'inline-block',
               pr: 1,
             }}
@@ -64,7 +67,7 @@ function HomePage() {
             sx={{
               fontWeight: 'bold',
               fontFamily: 'Bangers, sans-serif',
-              color: '#FFC107', // Yellow color for "SUPERHERO!"
+              color: '#FFC107',
               fontSize: '4rem',
               display: 'inline-block',
             }}
@@ -75,7 +78,7 @@ function HomePage() {
             <Button
               variant="contained"
               sx={{
-                backgroundColor: '#D62828', // Red button color
+                backgroundColor: '#D62828',
                 color: '#FFF',
                 fontFamily: 'Bangers, sans-serif',
                 fontWeight: 'bold',
@@ -92,25 +95,28 @@ function HomePage() {
         </Container>
         <Box
           sx={{
-            backgroundImage: `url('${process.env.PUBLIC_URL}/batman-image.png')`, // Path to Batman image in public folder
+            backgroundImage: `url('${process.env.PUBLIC_URL}/Flying-Batman-Speed-Transparent-PNG.png')`, // Use your Batman image
             backgroundSize: 'contain',
             backgroundRepeat: 'no-repeat',
             backgroundPosition: 'right',
-            width: '40%',
+            width: '40%', // Adjust width to fit layout
             height: '100%',
+            position: 'absolute',
+            right: '0', // Position Batman image to the right
+            top: '0',
           }}
         />
       </Box>
 
-      {/* What to Know Section with Light Blue Background */}
-      <Box sx={{ backgroundColor: '#ADD8E6', py: 8 }}> {/* Light Blue Background */}
+      {/* What to Know Section */}
+      <Box sx={{ backgroundColor: '#ADD8E6', py: 8 }}>
         <Container>
           <Typography
             variant="h3"
             sx={{
               fontFamily: 'Bangers, sans-serif',
               textAlign: 'center',
-              color: '#000', // Black text for the title
+              color: '#000',
               mb: 4,
             }}
           >
@@ -124,17 +130,17 @@ function HomePage() {
                   display: 'flex',
                   flexDirection: 'column',
                   justifyContent: 'space-between',
-                  minHeight: '300px', // Set a fixed height for all cards
-                  transition: 'transform 0.3s, box-shadow 0.3s', // Transition for hover effects
+                  minHeight: '300px',
+                  transition: 'transform 0.3s, box-shadow 0.3s',
                   '&:hover': {
-                    transform: 'scale(1.05)', // Slight zoom effect on hover
-                    boxShadow: '0px 10px 20px rgba(0,0,0,0.2)', // Larger shadow on hover
+                    transform: 'scale(1.05)',
+                    boxShadow: '0px 10px 20px rgba(0,0,0,0.2)',
                   },
                 }}
               >
                 <CardContent>
                   <IconButton>
-                    <VolunteerActivismIcon fontSize="large" sx={{ color: '#00FF00' }} /> {/* Green icon */}
+                    <VolunteerActivismIcon fontSize="large" sx={{ color: '#00FF00' }} />
                   </IconButton>
                   <Typography variant="h5" sx={{ fontFamily: 'Permanent Marker, sans-serif', mb: 2 }}>
                     Learn About Volunteering
@@ -171,7 +177,7 @@ function HomePage() {
               >
                 <CardContent>
                   <IconButton>
-                    <HowToRegIcon fontSize="large" sx={{ color: '#D62828' }} /> {/* Red icon */}
+                    <HowToRegIcon fontSize="large" sx={{ color: '#D62828' }} />
                   </IconButton>
                   <Typography variant="h5" sx={{ fontFamily: 'Permanent Marker, sans-serif', mb: 2 }}>
                     How to Get Involved
@@ -208,7 +214,7 @@ function HomePage() {
               >
                 <CardContent>
                   <IconButton>
-                    <EventAvailableIcon fontSize="large" sx={{ color: '#FFC107' }} /> {/* Yellow icon */}
+                    <EventAvailableIcon fontSize="large" sx={{ color: '#FFC107' }} />
                   </IconButton>
                   <Typography variant="h5" sx={{ fontFamily: 'Permanent Marker, sans-serif', mb: 2 }}>
                     Upcoming Opportunities
@@ -235,7 +241,7 @@ function HomePage() {
       <Box
         sx={{
           backgroundColor: '#000',
-          color: '#FCBF49', // Yellow color from your theme
+          color: '#FCBF49',
           textAlign: 'center',
           padding: '16px 0',
           marginTop: 'auto',
@@ -253,4 +259,4 @@ function HomePage() {
   );
 }
 
-export default HomePage;
+export default HomePage; 

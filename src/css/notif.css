@@ -1,5 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Bangers&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Comic+Neue:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap');
+
+html, body {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden; /* Hide horizontal scroll */
+    height: 100%;
+}
+
 /* Scope all styles under .notif-page */
 .notif-page {
     height: 100vh;
@@ -10,7 +18,8 @@
     background: url('../../public/cityview.webp') no-repeat center center;
     background-size: cover;
     position: relative;
-    overflow: hidden;
+    overflow: hidden; /* Hide any content overflowing */
+    box-sizing: border-box;
 }
 
 /* Position the Power Girl image at the bottom-left corner */
@@ -18,10 +27,13 @@
     position: absolute;
     bottom: 0;
     left: 0;
-    width: 28vw; /* Adjust the size as necessary */
-    z-index: 2; /* Ensure it stays behind the content but above the background */
+    width: 28vw; 
+    z-index: 2;
     animation: bounce 2.5s infinite ease-in;
-    transform: translate(-20px, 10px); /* Fine-tune this for better overlapping */
+    transform: translate(-20px, 10px);
+    max-width: 100%; 
+    object-fit: cover; 
+    overflow: hidden; 
 }
 
 /* Notification wrapper with padding and shadow */
@@ -32,14 +44,16 @@
     border: 0.2rem solid #55529F;
     box-shadow: 0px 4px 15px rgba(85, 82, 159, 1);
     height: 75vh;
-    width: 50vw;
-    max-width: 1200px;
+    width: 100%; 
+    max-width: 50vw; 
     min-width: 20rem;
     z-index: 2;
     animation: slideUpFadeIn 1s ease forwards;
     display: flex;
     flex-direction: column;
     align-items: center;
+    box-sizing: border-box;
+    overflow: hidden;
 }
 
 /* Header styling */
@@ -63,10 +77,11 @@
     width: 100%;
     max-width: 70rem;
     overflow-y: auto;
-    padding-right: 0;
     box-sizing: border-box;
     border-radius: 10px;
     box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+    overflow-x: hidden; 
+    padding: 0; 
 }
 
 /* Hide scrollbar */
