@@ -10,6 +10,7 @@ import EventManager from './Pages/EventManager';
 import UserProfileManager from './Pages/UserProfileManager';
 import NavBar from './component/NavBar';
 import VolunteeringHistory from './Pages/VolunteerHistory';
+import AboutUs from './Pages/AboutUs';
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
         {/* Define routes for different pages */}
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/about" element={<AboutUs />} />
           <Route path="/Header" element={<Header />} />
           <Route path="/Login" element={<Login />} />
           <Route path="/UserRegistrationForm" element={<UserRegistrationForm />} />
