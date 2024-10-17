@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import './EventManager.css';
-import MultiSelectDropdown from './MultiSelectDropdown'; // Matches the file name exactly
+import MultiSelectDropdown from './MultiSelectDropdown';
 
 function EventManager() {
   const [formData, setFormData] = useState({
@@ -12,8 +13,30 @@ function EventManager() {
     requiredSkills: []
   });
 
+  const [events, setEvents] = useState([]); // To hold fetched events
+  const [editingEventId, setEditingEventId] = useState(null); // ID of the event being edited
   const skillsOptions = ['Coding', 'Teamwork', 'Communication', 'Leadership'];
   const urgencyOptions = ['Low', 'Medium', 'High'];
+
+  // Fetch events from the backend
+  useEffect(() => {
+    axios.get('http://localhost:5000/api/events')
+      .then(response => setEvents(response.data))
+      .catch(error => console.error('Error fetching events:', error));
+  }, []);
+
+  // Populate form for editing an event
+  const handleEdit = (event) => {
+    setEditingEventId(event._id); // Set the ID of the event to edit
+    setFormData({
+      eventName: event.eventName,
+      eventDescription: event.eventDescription,
+      location: event.location,
+      eventDate: event.eventDate.split('T')[0], // Adjust date format if needed
+      urgency: event.urgency,
+      requiredSkills: event.requiredSkills || [] // Set required skills
+    });
+  };
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -26,7 +49,45 @@ function EventManager() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(formData);
+
+    const apiUrl = editingEventId
+      ? `http://localhost:5000/api/events/${editingEventId}` // URL for updating
+      : 'http://localhost:5000/api/events'; // URL for creating
+
+    const apiMethod = editingEventId ? axios.put : axios.post;
+
+    // Send the form data to the backend API
+    apiMethod(apiUrl, formData)
+      .then(response => {
+        console.log('Event saved:', response.data);
+        setEvents(prevEvents => {
+          if (editingEventId) {
+            // Update the edited event in the list
+            return prevEvents.map(event => event._id === editingEventId ? response.data : event);
+          } else {
+            // Add the new event to the list
+            return [...prevEvents, response.data];
+          }
+        });
+        // Reset form after submission
+        resetForm();
+      })
+      .catch(error => {
+        console.error('Error saving event:', error);
+        alert('There was an issue saving the event. Please try again.');
+      });
+  };
+
+  const resetForm = () => {
+    setEditingEventId(null); // Reset editing ID
+    setFormData({
+      eventName: '',
+      eventDescription: '',
+      location: '',
+      eventDate: '',
+      urgency: '',
+      requiredSkills: []
+    });
   };
 
   return (
@@ -97,9 +158,25 @@ function EventManager() {
           />
         </div>
         <button type="submit" className="submit-btn">
-          Submit
+          {editingEventId ? 'Update Event' : 'Submit'}
         </button>
+        <button type="button" onClick={resetForm} className="reset-btn">Cancel</button>
       </form>
+
+      {/* Display existing events */}
+      <div className="event-list">
+        <h2>Upcoming Events</h2>
+        {events.map(event => (
+          <div key={event._id} className="event-item">
+            <h3>{event.eventName}</h3>
+            <p>{event.eventDescription}</p>
+            <p><strong>Location:</strong> {event.location}</p>
+            <p><strong>Date:</strong> {new Date(event.eventDate).toLocaleDateString()}</p>
+            <p><strong>Urgency:</strong> {event.urgency}</p>
+            <button onClick={() => handleEdit(event)}>Edit</button> {/* Edit button */}
+          </div>
+        ))}
+      </div>
     </div>
   );
 }
