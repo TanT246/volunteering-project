@@ -14,7 +14,7 @@ function UserRegistrationForm() {
     return emailRegex.test(email);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     if (!email || !password) {
@@ -28,11 +28,29 @@ function UserRegistrationForm() {
     }
 
     setError(''); // Clear any previous errors
-    console.log('User registered with Email:', email, 'Password:', password);
 
-    // Clear form inputs
-    setEmail('');
-    setPassword('');
+    try {
+      const response = await fetch('http://localhost:5000/api/users/register', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email, password }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        setError(data.message || 'An error occurred. Please try again.');
+      } else {
+        console.log('User registered successfully:', data);
+        setEmail('');
+        setPassword('');
+      }
+    } catch (error) {
+      setError('Server error. Please try again later.');
+      console.error('Error during registration:', error);
+    }
   };
 
   const handleClickShowPassword = () => {
