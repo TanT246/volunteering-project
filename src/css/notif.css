@@ -73,7 +73,7 @@ html, body {
     display: flex;
     flex-direction: column;
     gap: 15px;
-    height: 30rem;
+    height: 80%;
     width: 100%;
     max-width: 70rem;
     overflow-y: auto;
@@ -209,6 +209,6 @@ html, body {
         transform: translateY(6px);
     }
     50% {
-        transform: translateY(3px);
+        transform: translateY(0px);
     }
 }
