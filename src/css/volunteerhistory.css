@@ -56,7 +56,6 @@
 .search-bar,
 .table-container {
   width: 100%;
-  max-width: 100%;
   margin: 0 auto;
   display: block;
   box-sizing: border-box;
@@ -107,24 +106,35 @@
   margin-right: 5px;
 }
 
-/* Table container with scroll */
+/* Table container with hidden vertical scroll bar and visible horizontal scroll bar */
 .table-container {
-  max-height: calc(100% - 200px); /* Reserve space for the scroll arrow */
-  overflow-y: auto;
+  max-height: calc(100% - 200px); /* Allows vertical scrolling */
+  overflow-y: scroll; /* Allow vertical scrolling */
+  overflow-x: auto; /* Enable horizontal scrolling */
   padding-right: 0;
   box-sizing: border-box;
 }
 
+/* Custom horizontal scrollbar styling */
 .table-container::-webkit-scrollbar {
-  display: none;
+  width: 0px; /* Hide vertical scrollbar */
+  height: 12px; /* Ensure horizontal scrollbar height is 12px */
 }
 
-/* Sticky table header */
-.history-table thead {
-  position: sticky;
-  top: 0;
-  background-color: #c1121f;
-  z-index: 1; /* Ensure the header stays behind the date picker */
+/* Custom horizontal scrollbar thumb */
+.table-container::-webkit-scrollbar-thumb:horizontal {
+  background-color: red; /* Red horizontal scrollbar */
+  border-radius: 6px; /* Rounded scrollbar */
+}
+
+.table-container::-webkit-scrollbar-track {
+  background-color: black; /* Black background for the scrollbar track */
+}
+
+/* Firefox support for hiding vertical scrollbar and keeping horizontal scrollbar */
+.table-container {
+  scrollbar-width: thin; /* Thin scrollbar for Firefox */
+  scrollbar-color: red black; /* Red horizontal scrollbar on black background */
 }
 
 /* Ensure DatePicker is shown properly */
@@ -292,6 +302,7 @@
 /* Table styling */
 .history-table {
   width: 100%;
+  min-width: 800px; /* Set a min-width to prevent the table from shrinking */
   border-collapse: collapse;
   background-color: #e9ecef;
   box-sizing: border-box;
@@ -307,9 +318,17 @@
   z-index: 1;
 }
 
-.history-table th {
-  background-color: #000;
-  color: #fff;
+/* Sticky table header */
+.history-table thead {
+  position: sticky;
+  top: 0;
+  background-color: #c1121f;
+  z-index: 1; /* Ensure the header stays on top */
+}
+
+/* Row hover effect */
+.history-table tbody tr:hover {
+  background-color: #f4f4f4;
 }
 
 /* Urgency color */
