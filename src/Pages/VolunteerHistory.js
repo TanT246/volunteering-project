@@ -1,163 +1,39 @@
 import React, { useState, useEffect, useRef } from 'react';
-import styles from '../css/volunteerhistory.css'; // Make sure your CSS is imported correctly
+import axios from 'axios'; // Import axios for API calls
+import DatePicker from 'react-datepicker'; // Import DatePicker
+import 'react-datepicker/dist/react-datepicker.css'; // Import DatePicker styles
+import '../css/volunteerhistory.css'; // Your custom CSS file
 
 const VolunteerHistory = () => {
-  const [volunteerData, setVolunteerData] = useState([
-    {
-      eventName: 'Food Drive',
-      eventDate: '2023-08-20',
-      location: 'Community Center',
-      hours: 4,
-      participationStatus: 'Completed',
-      urgency: 'Low',
-    },
-    {
-      eventName: 'Beach Cleanup',
-      eventDate: '2023-09-15',
-      location: 'Seaside Beach',
-      hours: 3,
-      participationStatus: 'Completed',
-      urgency: 'Medium',
-    },
-    {
-      eventName: 'Charity Run',
-      eventDate: '2023-10-01',
-      location: 'City Park',
-      hours: 5,
-      participationStatus: 'Pending',
-      urgency: 'High',
-    },
-    {
-      eventName: 'Blood Donation Camp',
-      eventDate: '2023-07-25',
-      location: 'Community Hall',
-      hours: 2,
-      participationStatus: 'Completed',
-      urgency: 'Low',
-    },
-    {
-      eventName: 'Animal Shelter Support',
-      eventDate: '2023-06-30',
-      location: 'City Animal Shelter',
-      hours: 6,
-      participationStatus: 'Completed',
-      urgency: 'Medium',
-    },
-    {
-      eventName: 'Park Restoration',
-      eventDate: '2023-09-05',
-      location: 'Greenwood Park',
-      hours: 4,
-      participationStatus: 'Pending',
-      urgency: 'High',
-    },
-    {
-      eventName: 'Winter Clothing Drive',
-      eventDate: '2023-12-02',
-      location: 'Downtown Square',
-      hours: 3,
-      participationStatus: 'Completed',
-      urgency: 'Medium',
-    },
-    {
-      eventName: 'Soup Kitchen Volunteering',
-      eventDate: '2023-11-15',
-      location: 'Local Shelter',
-      hours: 5,
-      participationStatus: 'Completed',
-      urgency: 'Low',
-    },
-    {
-      eventName: 'Tree Planting Initiative',
-      eventDate: '2023-10-10',
-      location: 'Westbrook Forest',
-      hours: 6,
-      participationStatus: 'Pending',
-      urgency: 'High',
-    },
-    {
-      eventName: 'School Supply Drive',
-      eventDate: '2023-08-28',
-      location: 'Town School',
-      hours: 2,
-      participationStatus: 'Completed',
-      urgency: 'Medium',
-    },
-    {
-      eventName: 'Neighborhood Cleanup',
-      eventDate: '2023-07-18',
-      location: 'Lakeside Avenue',
-      hours: 4,
-      participationStatus: 'Completed',
-      urgency: 'Low',
-    },
-    {
-      eventName: 'Food Bank Sorting',
-      eventDate: '2023-10-20',
-      location: 'Food Bank Warehouse',
-      hours: 5,
-      participationStatus: 'Pending',
-      urgency: 'Medium',
-    },
-    {
-      eventName: 'Holiday Gift Wrapping',
-      eventDate: '2023-12-10',
-      location: 'Community Mall',
-      hours: 3,
-      participationStatus: 'Pending',
-      urgency: 'Low',
-    },
-    {
-      eventName: 'Emergency Relief Support',
-      eventDate: '2023-11-02',
-      location: 'Disaster Relief Center',
-      hours: 7,
-      participationStatus: 'Completed',
-      urgency: 'High',
-    },
-    {
-      eventName: 'Art Auction Setup',
-      eventDate: '2023-09-25',
-      location: 'City Art Museum',
-      hours: 4,
-      participationStatus: 'Pending',
-      urgency: 'Medium',
-    },
-  ]);
-
-  const [filteredData, setFilteredData] = useState(volunteerData); // For search functionality
+  const [volunteerData, setVolunteerData] = useState([]);
+  const [filteredData, setFilteredData] = useState([]);
   const [selectedUrgencyFilters, setSelectedUrgencyFilters] = useState({
     Low: false,
     Medium: false,
     High: false,
-  }); // Store selected urgencies as an object
-  const [fadeIn, setFadeIn] = useState(false);
-  const [showScrollArrow, setShowScrollArrow] = useState(false); // Default is hidden
-  const containerRef = useRef(null); // Reference to the table container
+  });
+  const [startDate, setStartDate] = useState(null);
+  const [endDate, setEndDate] = useState(null);
+  const [sortOrder, setSortOrder] = useState('asc'); // State for sorting order
+  const [showScrollArrow, setShowScrollArrow] = useState(false); // Manage arrow visibility
+  const [isFilterPanelOpen, setIsFilterPanelOpen] = useState(false); // Control filter panel visibility
+  const [searchQuery, setSearchQuery] = useState(''); // State for search input
+  const containerRef = useRef(null);
 
+  // Fetch volunteer history data from the backend
   useEffect(() => {
-    setFadeIn(true);
+    const fetchVolunteerHistory = async () => {
+      try {
+        const response = await axios.get('http://localhost:5000/api/volunteerHistory');
+        setVolunteerData(response.data);
+        setFilteredData(response.data);
+      } catch (error) {
+        console.error('Error fetching volunteer history:', error);
+      }
+    };
+
+    fetchVolunteerHistory();
   }, []);
-
-  // Handle scroll and hide/show arrow based on content overflow
-  const handleScroll = () => {
-    const { scrollTop, scrollHeight, clientHeight } = containerRef.current;
-    if (scrollTop + clientHeight >= scrollHeight - 5) {
-      setShowScrollArrow(false); // Hide arrow when scrolled to the bottom
-    } else {
-      setShowScrollArrow(true); // Show arrow when not at bottom
-    }
-  };
-
-  // Check if content overflows container when component mounts or data changes
-  useEffect(() => {
-    const { scrollHeight, clientHeight } = containerRef.current;
-    if (scrollHeight > clientHeight) {
-      setShowScrollArrow(true);
-    } else {
-      setShowScrollArrow(false);
-    }
-  }, [volunteerData, filteredData]);
 
   // Handle urgency filter checkbox change
   const handleUrgencyFilterChange = (e) => {
@@ -168,24 +44,27 @@ const VolunteerHistory = () => {
     }));
   };
 
-  // Search function
-  const handleSearch = (e) => {
-    const query = e.target.value.toLowerCase();
-    filterData(query);
+  // Sort data by event date
+  const sortDataByDate = () => {
+    const sortedData = [...filteredData].sort((a, b) => {
+      const dateA = new Date(a.eventDate);
+      const dateB = new Date(b.eventDate);
+      return sortOrder === 'asc' ? dateA - dateB : dateB - dateA;
+    });
+    setFilteredData(sortedData);
+    setSortOrder(sortOrder === 'asc' ? 'desc' : 'asc'); // Toggle sort order
   };
 
-  // Apply search and urgency filters
-  const filterData = (searchQuery = "") => {
+  // Search and filter data
+  const filterData = () => {
     let filtered = volunteerData.filter((event) => {
-      // Search filter
       const matchesSearch =
-        event.eventName.toLowerCase().includes(searchQuery) ||
-        event.location.toLowerCase().includes(searchQuery) ||
-        event.participationStatus.toLowerCase().includes(searchQuery) ||
-        event.urgency.toLowerCase().includes(searchQuery) ||
+        event.eventName.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        event.location.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        event.participationStatus.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        event.urgency.toLowerCase().includes(searchQuery.toLowerCase()) ||
         event.hours.toString().includes(searchQuery);
 
-      // Urgency filter
       const selectedUrgencies = Object.keys(selectedUrgencyFilters).filter(
         (key) => selectedUrgencyFilters[key]
       );
@@ -193,20 +72,58 @@ const VolunteerHistory = () => {
       const matchesUrgency =
         selectedUrgencies.length === 0 || selectedUrgencies.includes(event.urgency);
 
-      return matchesSearch && matchesUrgency;
+      const eventDate = new Date(event.eventDate);
+      const matchesDateRange =
+        (!startDate || eventDate >= startDate) && (!endDate || eventDate <= endDate);
+
+      return matchesSearch && matchesUrgency && matchesDateRange;
     });
 
     setFilteredData(filtered);
+    checkOverflow(); // Check for overflow whenever data changes
   };
 
-  // Apply urgency filters when selectedUrgencyFilters state changes
   useEffect(() => {
     filterData();
-  }, [selectedUrgencyFilters]);
+  }, [selectedUrgencyFilters, startDate, endDate, searchQuery]);
+
+  // Scroll to bottom when arrow is clicked
+  const scrollToBottom = () => {
+    if (containerRef.current) {
+      containerRef.current.scrollTo({
+        top: containerRef.current.scrollHeight,
+        behavior: 'smooth',
+      });
+    }
+  };
+
+  // Check if there's more content to scroll
+  const checkOverflow = () => {
+    if (containerRef.current) {
+      const { scrollHeight, clientHeight } = containerRef.current;
+      setShowScrollArrow(scrollHeight > clientHeight); // Show the arrow if content overflows
+    }
+  };
+
+  // Check if the scroll arrow should be shown during scrolling
+  const handleScroll = () => {
+    const { scrollTop, scrollHeight, clientHeight } = containerRef.current;
+    setShowScrollArrow(scrollTop + clientHeight < scrollHeight); // Hide arrow if scrolled to the bottom
+  };
+
+  // Toggle filter panel
+  const toggleFilterPanel = () => {
+    setIsFilterPanelOpen(!isFilterPanelOpen);
+  };
+
+  // Handle search query change
+  const handleSearchChange = (e) => {
+    setSearchQuery(e.target.value);
+  };
 
   return (
     <div className="background">
-      <div className={`volunteer-history-wrapper ${fadeIn ? 'fade-in' : ''}`}>
+      <div className="volunteer-history-wrapper fade-in">
         <h2 className="volunteer-history-title">Volunteer Participation History</h2>
 
         {/* Search Bar */}
@@ -214,47 +131,82 @@ const VolunteerHistory = () => {
           type="text"
           placeholder="Search by event name, location, hours, status, or urgency..."
           className="search-bar"
-          onChange={handleSearch}
+          value={searchQuery}
+          onChange={handleSearchChange}
         />
 
-        {/* Urgency Filter Checkboxes */}
-        <div className="filter-checkboxes">
-          <label>
-            <input
-              type="checkbox"
-              value="Low"
-              onChange={handleUrgencyFilterChange}
-              checked={selectedUrgencyFilters.Low}
+        {/* Hamburger button to toggle filter panel */}
+        <div className="hamburger" onClick={toggleFilterPanel}>
+          ☰
+        </div>
+
+        {/* Filter Panel */}
+        <div className={`filter-panel ${isFilterPanelOpen ? 'open' : ''}`}>
+          <div className="filter-checkboxes">
+            <label>
+              <input
+                type="checkbox"
+                value="Low"
+                onChange={handleUrgencyFilterChange}
+                checked={selectedUrgencyFilters.Low}
+              />
+              Low
+            </label>
+            <label>
+              <input
+                type="checkbox"
+                value="Medium"
+                onChange={handleUrgencyFilterChange}
+                checked={selectedUrgencyFilters.Medium}
+              />
+              Medium
+            </label>
+            <label>
+              <input
+                type="checkbox"
+                value="High"
+                onChange={handleUrgencyFilterChange}
+                checked={selectedUrgencyFilters.High}
+              />
+              High
+            </label>
+          </div>
+
+          {/* Date Range Filters */}
+          <div className="date-range-filters">
+            <label>Start Date: </label>
+            <DatePicker
+              selected={startDate}
+              onChange={(date) => setStartDate(date)}
+              isClearable
+              placeholderText="Select start date"
             />
-            Low
-          </label>
-          <label>
-            <input
-              type="checkbox"
-              value="Medium"
-              onChange={handleUrgencyFilterChange}
-              checked={selectedUrgencyFilters.Medium}
+            <label>End Date: </label>
+            <DatePicker
+              selected={endDate}
+              onChange={(date) => setEndDate(date)}
+              isClearable
+              placeholderText="Select end date"
             />
-            Medium
-          </label>
-          <label>
-            <input
-              type="checkbox"
-              value="High"
-              onChange={handleUrgencyFilterChange}
-              checked={selectedUrgencyFilters.High}
-            />
-            High
-          </label>
+          </div>
+
+          {/* Sorting Button */}
+          <div className="sort-button-wrapper">
+            <button onClick={sortDataByDate} className="sort-button">
+              Sort by Date {sortOrder === 'asc' ? '↑' : '↓'}
+            </button>
+          </div>
         </div>
 
         {/* Table Container */}
-        <div className="table-container" onScroll={handleScroll} ref={containerRef}>
+        <div className="table-container" ref={containerRef} onScroll={handleScroll}>
           <table className="history-table">
             <thead>
               <tr>
                 <th>Event Name</th>
-                <th>Date</th>
+                <th onClick={sortDataByDate} style={{ cursor: 'pointer' }}>
+                  Date {sortOrder === 'asc' ? '↑' : '↓'}
+                </th>
                 <th>Location</th>
                 <th>Hours</th>
                 <th>Participation Status</th>
@@ -269,11 +221,7 @@ const VolunteerHistory = () => {
                     <td>{event.eventDate}</td>
                     <td>{event.location}</td>
                     <td>{event.hours}</td>
-                    <td
-                      className={
-                        event.participationStatus === 'Completed' ? 'completed' : 'pending'
-                      }
-                    >
+                    <td className={event.participationStatus === 'Completed' ? 'completed' : 'pending'}>
                       {event.participationStatus}
                     </td>
                     <td className={event.urgency.toLowerCase()}>{event.urgency}</td>
@@ -291,18 +239,17 @@ const VolunteerHistory = () => {
         </div>
 
         {/* Scroll Arrow Section */}
-        <div className="scroll-arrow-section">
-          {showScrollArrow && (
-            <div className="volunteer-scroll-arrow" onClick={() => containerRef.current.scrollTo({
-                top: containerRef.current.scrollHeight,
-                behavior: 'smooth',
-              })}
-            ></div>
-          )}
-        </div>
+        {filteredData.length > 0 && (
+          <div className="scroll-arrow-section">
+            <div
+              className={`volunteer-scroll-arrow ${showScrollArrow ? '' : 'hide'}`}
+              onClick={scrollToBottom}
+            >
+              &#x25BC; {/* Unicode down arrow */}
+            </div>
+          </div>
+        )}
       </div>
-
-      {/* Character Image */}
       <img src="mrterrific.png" alt="Character" className="character-img" />
     </div>
   );
