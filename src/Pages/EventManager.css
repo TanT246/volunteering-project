@@ -1,28 +1,15 @@
-@import url('https://fonts.googleapis.com/css2?family=Bangers&display=swap');
-
 .event-manager {
-  background-color: #1b2329; /* Background color */
+  background-color: #1b2329;
   background-image: url('../../public/PalmeraCity.png');
   background-size: cover;
   background-position: center;
-  height: 100vh;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  justify-content: center; /* Ensures the form is horizontally centered */
+  align-items: center; /* Vertically centers the form */
   position: relative;
-  padding: 60px 0px; /* Adds space above and below the form */
-}
-
-@keyframes pulse {
-  0% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(0.94); /* Adjust the scale factor */
-  }
-  100% {
-    transform: scale(1);
-  }
+  padding: 60px 0;
+  min-height: 100vh;
+  width: 100%;
 }
 
 .event-manager::before {
@@ -31,37 +18,28 @@
   background-size: contain;
   background-repeat: no-repeat;
   position: absolute;
-  left: 2.2%;
+  left: 5%; /* Adjust the position to overlap slightly with the form */
   bottom: 0;
-  width: 600px;
-  height: 800px;
+  width: 350px; /* Adjust this size as needed */
+  height: 500px;
   z-index: 3;
-  animation: pulse 4s infinite; /* Apply the pulse animation */
-}
-
-.event-manager::after {
-  content: "";
-  background: rgba(27, 35, 41, 0.30); /* Semi-transparent background color with 73% opacity */
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  z-index: 1; /* Positioned below the form and above the background image */
-  pointer-events: none; /* Ensures clicks pass through */
+  animation: pulse 4s infinite;
 }
 
 .event-form {
   background-color: rgba(255, 255, 255, 0.6);
-  padding: 40px; /* Equal padding on all sides of the form */
+  padding: 40px;
   border-radius: 10px;
-  width: 400px;
+  max-width: 450px;    /* Set a max width for the form */
+  width: 100%;          /* Make sure the form takes the full width */
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
-  text-align: center;
-  margin: 0 20px; /* Adds equal space between form and screen edges */
-  position: relative;
-  z-index: 2; /* Keeps form above BlueBeetle image and overlay */
-  font-family: 'Bangers', cursive; /* Apply comic book font */
+  z-index: 2;          /* Keep the form above the background */
+  
+  /* Centering the form */
+  position: absolute;   /* Change to absolute positioning */
+  top: 50%;             /* Position from the top */
+  left: 50%;            /* Position from the left */
+  transform: translate(-50%, -50%); /* Center it using transform */
 }
 
 .event-form h1,
@@ -81,19 +59,19 @@
 
 .event-form input[type="date"] {
   padding: 8px;
-  font-family: 'Bangers', cursive; /* Apply comic book font */
+  font-family: 'Bangers', cursive;
 }
 
 .event-form input,
 .event-form textarea,
 .event-form select {
   width: 100%;
-  padding: 10px; /* Equal padding inside input boxes */
+  padding: 10px;
   font-size: 1rem;
   border: 1px solid #ccc;
   border-radius: 5px;
-  box-sizing: border-box; /* Ensures padding doesn't overflow the box */
-  font-family: 'Bangers', cursive; /* Apply comic book font */
+  box-sizing: border-box;
+  font-family: 'Bangers', cursive;
 }
 
 .event-form button {
@@ -105,38 +83,9 @@
   border-radius: 5px;
   cursor: pointer;
   font-size: 16px;
-  font-family: 'Bangers', cursive; /* Apply comic book font */
+  font-family: 'Bangers', cursive;
 }
 
 .event-form button:hover {
   background-color: #ff8c00;
-}
-
-.form-group {
-  margin-bottom: 15px;
-}
-
-.form-group label {
-  display: block;
-  text-align: left;
-  font-size: 1.2rem;
-  color: #003049;
-  margin-bottom: 5px;
-  font-family: 'Bangers', cursive; /* Apply comic book font */
-}
-
-.form-group input,
-.form-group textarea,
-.form-group select {
-  width: 100%;
-  padding: 10px; /* Equal padding inside input boxes */
-  font-size: 1rem;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  box-sizing: border-box; /* Ensures padding doesn't overflow the box */
-  font-family: 'Bangers', cursive; /* Apply comic book font */
-}
-
-.form-group select[multiple] {
-  height: 100px;
 }

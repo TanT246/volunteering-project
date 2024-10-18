@@ -1,18 +1,39 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Container, Box, Typography, Button, Grid, Card, CardContent, IconButton } from '@mui/material';
-import VolunteerActivismIcon from '@mui/icons-material/VolunteerActivism'; 
-import EventAvailableIcon from '@mui/icons-material/EventAvailable'; 
-import HowToRegIcon from '@mui/icons-material/HowToReg'; 
-
-
+import VolunteerActivismIcon from '@mui/icons-material/VolunteerActivism';
+import EventAvailableIcon from '@mui/icons-material/EventAvailable';
+import HowToRegIcon from '@mui/icons-material/HowToReg';
+import axios from 'axios';
 
 function HomePage() {
+  const [events, setEvents] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const navigate = useNavigate(); // Hook for navigation
+
+  useEffect(() => {
+    // Fetch events from the back-end
+    axios.get('http://localhost:5000/api/events')
+      .then(response => {
+        setEvents(response.data);
+        setLoading(false);
+      })
+      .catch(error => {
+        console.error('Error fetching events:', error);
+        setLoading(false);
+      });
+  }, []);
+
+  const handleStartClick = () => {
+    navigate('/UserRegistrationForm'); // Navigate to the registration page
+  };
+
   return (
     <Box sx={{ minHeight: '100vh', backgroundColor: '#000' }}>
       {/* Hero Section */}
       <Box
         sx={{
-          backgroundImage: `url('${process.env.PUBLIC_URL}/7023933.png')`, // Use first background image
+          backgroundImage: `url('${process.env.PUBLIC_URL}/7023933.png')`,
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           height: '100vh',
@@ -20,7 +41,7 @@ function HomePage() {
           alignItems: 'center',
           justifyContent: 'space-between',
           padding: '0 5%',
-          position: 'relative', // Set relative to position Batman image
+          position: 'relative',
           color: '#FFF',
         }}
       >
@@ -76,6 +97,7 @@ function HomePage() {
           </Typography>
           <Box mt={4}>
             <Button
+              onClick={handleStartClick} // Add onClick handler for navigation
               variant="contained"
               sx={{
                 backgroundColor: '#D62828',
@@ -95,14 +117,14 @@ function HomePage() {
         </Container>
         <Box
           sx={{
-            backgroundImage: `url('${process.env.PUBLIC_URL}/Flying-Batman-Speed-Transparent-PNG.png')`, // Use your Batman image
+            backgroundImage: `url('${process.env.PUBLIC_URL}/Flying-Batman-Speed-Transparent-PNG.png')`,
             backgroundSize: 'contain',
             backgroundRepeat: 'no-repeat',
             backgroundPosition: 'right',
-            width: '58%', 
+            width: '58%',
             height: '100%',
             position: 'absolute',
-            right: '0', 
+            right: '0',
             top: '0',
           }}
         />
@@ -259,4 +281,4 @@ function HomePage() {
   );
 }
 
-export default HomePage; 
+export default HomePage;

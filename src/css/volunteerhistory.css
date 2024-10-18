@@ -15,7 +15,7 @@
   position: absolute;
   bottom: 4.5rem;
   right: -2rem;
-  width: 23.5rem;
+  width: 25vw;
   height: auto;
   z-index: 2;
   animation: pulse 2s infinite;
@@ -56,7 +56,6 @@
 .search-bar,
 .table-container {
   width: 100%;
-  max-width: 100%;
   margin: 0 auto;
   display: block;
   box-sizing: border-box;
@@ -91,29 +90,219 @@
   margin-right: 5px;
 }
 
-/* Table container with scroll */
+/* Add this for date picker styling */
+.date-range-filters {
+  text-align: center;
+  margin-bottom: 15px;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.date-range-filters label {
+  font-size: 1.05rem;
+  font-family: "Permanent Marker";
+  color: red;
+  margin-right: 5px;
+}
+
+/* Table container with hidden vertical scroll bar and visible horizontal scroll bar */
 .table-container {
-  max-height: calc(100% - 200px); /* Reserve space for the scroll arrow */
-  overflow-y: auto;
+  max-height: calc(100% - 200px); /* Allows vertical scrolling */
+  overflow-y: scroll; /* Allow vertical scrolling */
+  overflow-x: auto; /* Enable horizontal scrolling */
   padding-right: 0;
   box-sizing: border-box;
 }
 
+/* Custom horizontal scrollbar styling */
 .table-container::-webkit-scrollbar {
-  display: none;
+  width: 0px; /* Hide vertical scrollbar */
+  height: 12px; /* Ensure horizontal scrollbar height is 12px */
 }
 
-/* Sticky table header */
-.history-table thead {
-  position: sticky;
-  top: 0;
-  background-color: #c1121f;
-  z-index: 1;
+/* Custom horizontal scrollbar thumb */
+.table-container::-webkit-scrollbar-thumb:horizontal {
+  background-color: red; /* Red horizontal scrollbar */
+  border-radius: 6px; /* Rounded scrollbar */
 }
+
+.table-container::-webkit-scrollbar-track {
+  background-color: black; /* Black background for the scrollbar track */
+}
+
+/* Firefox support for hiding vertical scrollbar and keeping horizontal scrollbar */
+.table-container {
+  scrollbar-width: thin; /* Thin scrollbar for Firefox */
+  scrollbar-color: red black; /* Red horizontal scrollbar on black background */
+}
+
+/* Ensure DatePicker is shown properly */
+.react-datepicker {
+  z-index: 1000; /* Ensure the datepicker appears above other elements */
+}
+
+.react-datepicker__input-container {
+  position: relative;
+}
+
+/*DatePicker Input styling */
+.react-datepicker__input-container input {
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+  background-color: #f8f9fa;
+  color: #333;
+  font-family: "Permanent Marker";
+}
+
+
+/* If necessary, set the DatePicker container position */
+.date-range-filters {
+  text-align: center;
+  margin-bottom: 15px;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  position: relative; /* Ensures the calendar can stack above other content */
+  z-index: 1000;
+}
+
+/* Styling for the DatePicker container */
+.react-datepicker__input-container input {
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+  background-color: #f8f9fa;
+  color: #333;
+  font-family: "Permanent Marker";
+}
+
+.sort-button-wrapper {
+  display: flex;
+  justify-content: center; /* Centers the button horizontally */
+  margin-bottom: 20px; /* Optional: adds space below the button */
+}
+
+.sort-button {
+  padding: 10px 15px;
+  margin: 15px 0;
+  font-family: 'Permanent Marker';
+  background-color: #c1121f;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.sort-button:hover {
+  background-color: #a10e1b;
+}
+
+.filter-toggle-wrapper {
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.filter-toggle-button {
+  background-color: #c1121f;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-family: 'Permanent Marker';
+}
+
+.filter-toggle-button:hover {
+  background-color: #a10e1b;
+}
+
+.filter-section {
+  margin-bottom: 15px;
+  overflow: hidden;
+  transition: height 0.4s ease;
+  position: relative;
+}
+
+.filter-checkboxes,
+.date-range-filters,
+.sort-button-wrapper {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin: 5px 0;
+}
+
+/*----------------------------------------*/
+/* Hamburger Menu Styling */
+.hamburger {
+  font-size: 2rem;
+  cursor: pointer;
+  position: absolute;
+  left: 1rem;
+  top: 1rem;
+  z-index: 1001; /* Ensure the hamburger is on top */
+  color: white;
+}
+
+/* Filter Panel Styling */
+.filter-panel {
+  position: fixed;
+  top: 0;
+  left: -38rem; /* Initially hide the panel offscreen */
+  width: 32rem;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.9);
+  box-shadow: 4px 0 8px rgba(0, 0, 0, 0.5);
+  transition: left 0.8s ease-in-out;
+  z-index: 1000; /* Ensure it sits on top of other elements */
+  padding: 20px;
+  overflow-y: auto;
+}
+
+.filter-panel.open {
+  left: 0; /* Slide the panel into view */
+}
+
+.filter-checkboxes, .date-range-filters, .sort-button-wrapper {
+  margin-bottom: 15px;
+}
+
+.filter-checkboxes label {
+  color: white;
+  font-size: 1rem;
+  display: block;
+  margin-bottom: 10px;
+}
+
+.sort-button-wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.sort-button {
+  padding: 10px;
+  background-color: #c1121f;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.sort-button:hover {
+  background-color: #a10e1b;
+}
+
+
+/*-----------------------------------------*/
 
 /* Table styling */
 .history-table {
   width: 100%;
+  min-width: 800px; /* Set a min-width to prevent the table from shrinking */
   border-collapse: collapse;
   background-color: #e9ecef;
   box-sizing: border-box;
@@ -126,11 +315,20 @@
   border: 3px solid #c1121f;
   background-color: #f8f9fa;
   font-family: "Permanent Marker";
+  z-index: 1;
 }
 
-.history-table th {
-  background-color: #000;
-  color: #fff;
+/* Sticky table header */
+.history-table thead {
+  position: sticky;
+  top: 0;
+  background-color: #c1121f;
+  z-index: 1; /* Ensure the header stays on top */
+}
+
+/* Row hover effect */
+.history-table tbody tr:hover {
+  background-color: #f4f4f4;
 }
 
 /* Urgency color */
@@ -160,11 +358,13 @@
 /* Scroll Arrow Section */
 .scroll-arrow-section {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 10px;
+  justify-content: center; /* Centers the arrow horizontally */
+  align-items: center; /* Centers the arrow vertically */
+  width: 100%; /* Ensures the arrow section takes the full width of its container */
   height: 40px;
+  margin-top: 1.3rem;
   position: relative;
+  padding: 0; /* Remove any padding that might offset the centering */
 }
 
 /* Scroll Arrow using CSS triangle */
@@ -184,20 +384,10 @@
 }
 
 @keyframes bounces {
-  0%,
-  100% {
+  0%, 100% {
     transform: translateY(-5px);
   }
   50% {
-    transform: translateY(-2px);
-  }
-}
-
-@keyframes pulse {
-  0%, 100% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(1.05);
+    transform: translateY(0);
   }
 }
