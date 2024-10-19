@@ -34,12 +34,12 @@ const ProfileForm = () => {
         },
       })
       .then((response) => {
-        const { fullName, profilePicture, skills, preferences, availability } = response.data;
-        setFullName(fullName);
+        const { firstName, lastName, profilePicture, skills, preferences, availability } = response.data;
+        setFullName(`${firstName} ${lastName}`);
         setProfilePicture(profilePicture || null);
         setSkills(skills || []);
         setPreferences(preferences || '');
-        setAvailability(availability || [null, null]);
+        setAvailability(availability ? [new Date(availability.startDate), new Date(availability.endDate)] : [null, null]);
         setLoading(false);
       })
       .catch((error) => {
@@ -57,24 +57,31 @@ const ProfileForm = () => {
 
     // Create FormData for both text and file data
     const formData = new FormData();
-    formData.append('fullName', fullName);
+    formData.append('firstName', fullName.split(' ')[0]); // Extract first name
+    formData.append('lastName', fullName.split(' ').slice(1).join(' ')); // Extract last name
     
     if (profilePicture) {
       formData.append('profilePicture', profilePicture);
     }
-    
-    formData.append('skills', JSON.stringify(skills)); // skills sent as a JSON string
+
+    formData.append('skills', JSON.stringify(skills)); // Send skills as a JSON string
     formData.append('preferences', preferences);
-    formData.append('availability', JSON.stringify(availability)); // date range sent as a JSON string
+    
+    // Split availability into startDate and endDate
+    formData.append('startDate', availability[0]);
+    formData.append('endDate', availability[1]);
 
     try {
-      // Send PUT request to the backend
-      await axios.put('http://localhost:5000/api/users/profile', formData, {
+      const response = await fetch('http://localhost:5000/api/users/profile', {
+        method: 'POST',
         headers: {
-          'Content-Type': 'multipart/form-data', // required for file uploads
-          Authorization: `Bearer ${localStorage.getItem('authToken')}`, // token from localStorage
+          Authorization: `Bearer ${localStorage.getItem('authToken')}`, // Auth token from localStorage
         },
+        body: formData,
       });
+
+      const data = await response.json();
+      console.log(data);
 
       alert('Profile updated successfully');
     } catch (error) {
