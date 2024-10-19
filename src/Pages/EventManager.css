@@ -4,8 +4,9 @@
   background-size: cover;
   background-position: center;
   display: flex;
-  justify-content: center; /* Ensures the form is horizontally centered */
-  align-items: center; /* Vertically centers the form */
+  flex-direction: column; /* Ensure content is stacked vertically */
+  justify-content: flex-start;
+  align-items: center;
   position: relative;
   padding: 60px 0;
   min-height: 100vh;
@@ -18,28 +19,36 @@
   background-size: contain;
   background-repeat: no-repeat;
   position: absolute;
-  left: 1%; /* Adjust the position to overlap slightly with the form */
-  bottom: 0;
-  width: 30%; /* Adjust this size as needed */
-  height: 500px;
-  z-index: 3;
-  animation: pulse 4s infinite;
+  left: -10%; /* Shift the image more to the left */
+  top: 50%; /* Center vertically */
+  transform: translateY(-50%); /* Vertically center without affecting horizontal position */
+  width: 700px; /* Image size */
+  height: 900px; /* Image size */
+  z-index: 3; /* Ensure the image is behind the form */
+  
+  /* Animation settings */
+  animation: beetlePulse 6s infinite;
+}
+
+/* Keyframes for the animation */
+@keyframes beetlePulse {
+  0%, 100% {
+    transform: translateY(-50%) scale(1); /* Normal size at start and end */
+  }
+  50% {
+    transform: translateY(-50%) scale(1.1); /* Slightly larger in the middle of the animation */
+  }
 }
 
 .event-form {
-  background-color: rgba(255, 255, 255, 0.6);
+  background-color: rgba(255, 255, 255, 0.6); /* Same background color */
   padding: 40px;
   border-radius: 10px;
-  max-width: 450px;    /* Set a max width for the form */
-  width: 100%;          /* Make sure the form takes the full width */
+  max-width: 450px;
+  width: 100%;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
-  z-index: 2;          /* Keep the form above the background */
-  
-  /* Centering the form */
-  position: absolute;   /* Change to absolute positioning */
-  top: 50%;             /* Position from the top */
-  left: 50%;            /* Position from the left */
-  transform: translate(-50%, -50%); /* Center it using transform */
+  z-index: 2;
+  margin-bottom: 30px;
 }
 
 .event-form h1,
@@ -87,5 +96,60 @@
 }
 
 .event-form button:hover {
+  background-color: #ff8c00;
+}
+
+.event-form select {
+  position: relative;
+  z-index: 10;
+}
+
+.event-list {
+  background-color: rgba(255, 255, 255, 0.6); /* Same background as the form */
+  padding: 20px;
+  border-radius: 10px;
+  max-width: 650px;
+  width: 100%;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
+.event-list h2 {
+  color: #107faa; /* Brighter color for visibility */
+  font-size: 2rem;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.event-item {
+  background-color: #fff;
+  padding: 15px;
+  margin-bottom: 15px;
+  border-radius: 10px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.event-item h3 {
+  margin-top: 0;
+  font-family: 'Bangers', cursive;
+  color: #107faa;
+}
+
+.event-item p {
+  margin: 5px 0;
+  font-family: 'Bangers', cursive;
+}
+
+.event-item button {
+  padding: 8px 12px;
+  background-color: #FFA500;
+  color: #003049;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-family: 'Bangers', cursive;
+}
+
+.event-item button:hover {
   background-color: #ff8c00;
 }
