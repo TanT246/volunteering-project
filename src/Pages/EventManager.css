@@ -18,9 +18,9 @@
   background-size: contain;
   background-repeat: no-repeat;
   position: absolute;
-  left: 5%; /* Adjust the position to overlap slightly with the form */
+  left: 1%; /* Adjust the position to overlap slightly with the form */
   bottom: 0;
-  width: 350px; /* Adjust this size as needed */
+  width: 30%; /* Adjust this size as needed */
   height: 500px;
   z-index: 3;
   animation: pulse 4s infinite;

@@ -15,7 +15,29 @@ function EventManager() {
 
   const [events, setEvents] = useState([]); // To hold fetched events
   const [editingEventId, setEditingEventId] = useState(null); // ID of the event being edited
-  const skillsOptions = ['Coding', 'Teamwork', 'Communication', 'Leadership'];
+  const skillsOptions = [
+    'Teamwork',
+    'Safety Awareness',
+    'Classroom Management',
+    'Mentorship',
+    'Creativity',
+    'Time Management',
+    'Lesson Planning',
+    'Adaptability',
+    'Algebra',
+    'Geometry',
+    'Basic Coding',
+    'Physics',
+    'Chemistry',
+    'Coding',
+    'Communication',
+    'Leadership',
+    'tshirts',
+    'ticketSales',
+    'raffleTicketSales',
+    'trafficParking',
+    'cleanupGrounds'
+  ];
   const urgencyOptions = ['Low', 'Medium', 'High'];
 
   // Fetch events from the backend

@@ -1,50 +1,66 @@
 import React, { useState, useEffect } from 'react';
 import { Container, TextField, MenuItem, Button, Typography, Box, Grid, Paper } from '@mui/material';
-
-const sampleVolunteers = [
-  { _id: '1', name: 'John Doe', skills: 'Coding', location: 'New York' },
-  { _id: '2', name: 'Jane Smith', skills: 'Design', location: 'San Francisco' },
-  { _id: '3', name: 'Bob Johnson', skills: 'Coding', location: 'New York' },
-];
-
-const sampleEvents = [
-  { _id: '1', name: 'Hackathon 2024', skillsRequired: 'Coding', location: 'New York' },
-  { _id: '2', name: 'Design Sprint', skillsRequired: 'Design', location: 'San Francisco' },
-  { _id: '3', name: 'NYC Code Jam', skillsRequired: 'Coding', location: 'New York' },
-];
+import axios from 'axios';
 
 function VolunteerMatchingForm() {
-  const [volunteers] = useState(sampleVolunteers);
-  const [events] = useState(sampleEvents);
-  const [selectedVolunteer, setSelectedVolunteer] = useState('');
-  const [matchedEvents, setMatchedEvents] = useState([]);
+  const [events, setEvents] = useState([]);
   const [selectedEvent, setSelectedEvent] = useState('');
+  const [matchedVolunteers, setMatchedVolunteers] = useState([]);
+  const [selectedVolunteers, setSelectedVolunteers] = useState([]);
 
+  // Fetch events from the backend server
   useEffect(() => {
-    setMatchedEvents([]);
-    setSelectedEvent('');
-  }, [selectedVolunteer]);
+    async function fetchEvents() {
+      try {
+        const response = await axios.get('http://localhost:5000/api/events');
+        setEvents(response.data);
+      } catch (error) {
+        console.error('Error fetching events:', error);
+      }
+    }
+    fetchEvents();
+  }, []);
 
-  const handleVolunteerChange = (e) => {
-    const volunteerId = e.target.value;
-    setSelectedVolunteer(volunteerId);
+  // Reset matched volunteers when a new event is selected
+  useEffect(() => {
+    setMatchedVolunteers([]);
+    setSelectedVolunteers([]);
+  }, [selectedEvent]);
 
-    const volunteer = volunteers.find(v => v._id === volunteerId);
-    const matches = events.filter(
-      event => event.skillsRequired.includes(volunteer.skills) && event.location === volunteer.location
-    );
+  const handleEventChange = async (e) => {
+    const eventId = e.target.value;
+    setSelectedEvent(eventId);
 
-    setMatchedEvents(matches);
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (selectedVolunteer && selectedEvent) {
-      alert(`Volunteer and event matched! Volunteer ID: ${selectedVolunteer}, Event ID: ${selectedEvent}`);
-    } else {
-      alert('No event selected.');
+    try {
+      // Fetch matching volunteers for the selected event using its ID
+      const response = await axios.get(`http://localhost:5000/api/volunteerMatch/matchByEvent/${eventId}`);
+      setMatchedVolunteers(response.data);
+    } catch (error) {
+      console.error('Error fetching matched volunteers:', error);
     }
   };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+  
+    if (selectedEvent && selectedVolunteers.length > 0) {
+      try {
+        // Send the match data to the backend to save the match
+        const response = await axios.post('http://localhost:5000/api/volunteerMatch/saveMatch', {
+          eventId: selectedEvent,
+          volunteerIds: selectedVolunteers,
+        });
+  
+        alert(response.data.message);
+      } catch (error) {
+        console.error('Error saving the match:', error);
+        alert('Failed to save the match. Please try again.');
+      }
+    } else {
+      alert('No volunteers selected.');
+    }
+  };
+  
 
   return (
     <div
@@ -99,15 +115,15 @@ function VolunteerMatchingForm() {
                   fontFamily: 'Bangers, sans-serif',
                 }}
               >
-                Match Volunteers to Events
+                Match Events to Volunteers
               </Typography>
 
               <form onSubmit={handleSubmit}>
                 <TextField
                   select
-                  label="Select Volunteer"
-                  value={selectedVolunteer}
-                  onChange={handleVolunteerChange}
+                  label="Select Event"
+                  value={selectedEvent}
+                  onChange={handleEventChange}
                   fullWidth
                   margin="normal"
                   variant="outlined"
@@ -119,19 +135,18 @@ function VolunteerMatchingForm() {
                     boxShadow: '0px 4px 10px rgba(0, 0, 0, 0.1)',
                   }}
                 >
-                  {volunteers.map((volunteer) => (
-                    <MenuItem key={volunteer._id} value={volunteer._id}>
-                      {volunteer.name}
+                  {events.map((event) => (
+                    <MenuItem key={event._id} value={event._id}>
+                      {event.eventName}
                     </MenuItem>
                   ))}
                 </TextField>
 
-                {/* Matched Event Dropdown */}
                 <TextField
                   select
-                  label="Select Matched Event"
-                  value={selectedEvent}
-                  onChange={(e) => setSelectedEvent(e.target.value)}
+                  label="Select Matched Volunteers"
+                  value={selectedVolunteers}
+                  onChange={(e) => setSelectedVolunteers(e.target.value)}
                   fullWidth
                   margin="normal"
                   variant="outlined"
@@ -142,17 +157,20 @@ function VolunteerMatchingForm() {
                     fontFamily: 'Roboto, sans-serif',
                     boxShadow: '0px 4px 10px rgba(0, 0, 0, 0.1)',
                   }}
-                  disabled={!matchedEvents.length} // Disable if no matches
+                  SelectProps={{
+                    multiple: true, // Enable multiple selection
+                  }}
+                  disabled={!matchedVolunteers.length} // Disable if no matches
                 >
-                  {matchedEvents.length ? (
-                    matchedEvents.map((event) => (
-                      <MenuItem key={event._id} value={event._id}>
-                        {event.name}
+                  {matchedVolunteers.length ? (
+                    matchedVolunteers.map((volunteer) => (
+                      <MenuItem key={volunteer._id} value={volunteer._id}>
+                        {volunteer.firstName} {volunteer.lastName}
                       </MenuItem>
                     ))
                   ) : (
                     <MenuItem value="">
-                      No Matching Event Found
+                      No Matching Volunteers Found
                     </MenuItem>
                   )}
                 </TextField>
@@ -162,12 +180,12 @@ function VolunteerMatchingForm() {
                     type="submit"
                     variant="contained"
                     fullWidth
-                    disabled={!selectedEvent}
+                    disabled={!selectedVolunteers.length}
                     sx={{
                       padding: '16px 0',
-                      backgroundColor: selectedEvent ? '#D62828' : '#FF4500',
+                      backgroundColor: selectedVolunteers.length ? '#D62828' : '#FF4500',
                       '&:hover': {
-                        backgroundColor: selectedEvent ? '#B22222' : '#FF6347',
+                        backgroundColor: selectedVolunteers.length ? '#B22222' : '#FF6347',
                       },
                       fontFamily: 'Bangers, sans-serif',
                       fontWeight: 'bold',
@@ -182,7 +200,7 @@ function VolunteerMatchingForm() {
                       },
                     }}
                   >
-                    {selectedEvent ? 'Match Volunteer' : 'No Match'}
+                    {selectedVolunteers.length ? 'Match Event' : 'No Volunteers'}
                   </Button>
                 </Box>
               </form>
