@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
-import axios from 'axios'; // Import axios for API calls
-import DatePicker from 'react-datepicker'; // Import DatePicker
-import 'react-datepicker/dist/react-datepicker.css'; // Import DatePicker styles
-import '../css/volunteerhistory.css'; // Your custom CSS file
+import axios from 'axios';
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
+import '../css/volunteerhistory.css';
 
 const VolunteerHistory = () => {
   const [volunteerData, setVolunteerData] = useState([]);
@@ -14,10 +14,10 @@ const VolunteerHistory = () => {
   });
   const [startDate, setStartDate] = useState(null);
   const [endDate, setEndDate] = useState(null);
-  const [sortOrder, setSortOrder] = useState('asc'); // State for sorting order
-  const [showScrollArrow, setShowScrollArrow] = useState(false); // Manage arrow visibility
-  const [isFilterPanelOpen, setIsFilterPanelOpen] = useState(false); // Control filter panel visibility
-  const [searchQuery, setSearchQuery] = useState(''); // State for search input
+  const [sortOrder, setSortOrder] = useState('asc');
+  const [showScrollArrow, setShowScrollArrow] = useState(false);
+  const [isFilterPanelOpen, setIsFilterPanelOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState('');
   const containerRef = useRef(null);
 
   // Fetch volunteer history data from the backend
@@ -52,7 +52,7 @@ const VolunteerHistory = () => {
       return sortOrder === 'asc' ? dateA - dateB : dateB - dateA;
     });
     setFilteredData(sortedData);
-    setSortOrder(sortOrder === 'asc' ? 'desc' : 'asc'); // Toggle sort order
+    setSortOrder(sortOrder === 'asc' ? 'desc' : 'asc');
   };
 
   // Search and filter data
@@ -61,9 +61,9 @@ const VolunteerHistory = () => {
       const matchesSearch =
         event.eventName.toLowerCase().includes(searchQuery.toLowerCase()) ||
         event.location.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        event.participationStatus.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        event.volunteerName.toLowerCase().includes(searchQuery.toLowerCase()) ||
         event.urgency.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        event.hours.toString().includes(searchQuery);
+        event.requiredSkills.join(', ').toLowerCase().includes(searchQuery.toLowerCase());
 
       const selectedUrgencies = Object.keys(selectedUrgencyFilters).filter(
         (key) => selectedUrgencyFilters[key]
@@ -129,7 +129,7 @@ const VolunteerHistory = () => {
         {/* Search Bar */}
         <input
           type="text"
-          placeholder="Search by event name, location, hours, status, or urgency..."
+          placeholder="Search by volunteer name, event name, location, urgency, or skills..."
           className="search-bar"
           value={searchQuery}
           onChange={handleSearchChange}
@@ -203,13 +203,13 @@ const VolunteerHistory = () => {
           <table className="history-table">
             <thead>
               <tr>
+                <th>Volunteer Name</th>
                 <th>Event Name</th>
                 <th onClick={sortDataByDate} style={{ cursor: 'pointer' }}>
                   Date {sortOrder === 'asc' ? '↑' : '↓'}
                 </th>
                 <th>Location</th>
-                <th>Hours</th>
-                <th>Participation Status</th>
+                <th>Required Skills</th>
                 <th>Urgency</th>
               </tr>
             </thead>
@@ -217,13 +217,11 @@ const VolunteerHistory = () => {
               {filteredData.length > 0 ? (
                 filteredData.map((event, index) => (
                   <tr key={index}>
+                    <td>{event.volunteerName}</td>
                     <td>{event.eventName}</td>
-                    <td>{event.eventDate}</td>
+                    <td>{new Date(event.eventDate).toLocaleDateString()}</td>
                     <td>{event.location}</td>
-                    <td>{event.hours}</td>
-                    <td className={event.participationStatus === 'Completed' ? 'completed' : 'pending'}>
-                      {event.participationStatus}
-                    </td>
+                    <td>{event.requiredSkills.join(', ')}</td>
                     <td className={event.urgency.toLowerCase()}>{event.urgency}</td>
                   </tr>
                 ))
