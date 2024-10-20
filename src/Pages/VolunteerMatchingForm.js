@@ -30,15 +30,25 @@ function VolunteerMatchingForm() {
   const handleEventChange = async (e) => {
     const eventId = e.target.value;
     setSelectedEvent(eventId);
-
+  
+    console.log('Selected event ID:', eventId);
+  
+    if (!eventId) {
+      console.error('Event ID is not defined.');
+      return;
+    }
+  
     try {
       // Fetch matching volunteers for the selected event using its ID
       const response = await axios.get(`http://localhost:5000/api/volunteerMatch/matchByEvent/${eventId}`);
+      console.log('Matched volunteers:', response.data);
       setMatchedVolunteers(response.data);
     } catch (error) {
       console.error('Error fetching matched volunteers:', error);
     }
   };
+  
+  
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -119,7 +129,7 @@ function VolunteerMatchingForm() {
               </Typography>
 
               <form onSubmit={handleSubmit}>
-                <TextField
+              <TextField
                   select
                   label="Select Event"
                   value={selectedEvent}
@@ -162,18 +172,13 @@ function VolunteerMatchingForm() {
                   }}
                   disabled={!matchedVolunteers.length} // Disable if no matches
                 >
-                  {matchedVolunteers.length ? (
-                    matchedVolunteers.map((volunteer) => (
-                      <MenuItem key={volunteer._id} value={volunteer._id}>
-                        {volunteer.firstName} {volunteer.lastName}
-                      </MenuItem>
-                    ))
-                  ) : (
-                    <MenuItem value="">
-                      No Matching Volunteers Found
+                  {matchedVolunteers.map((volunteer) => (
+                    <MenuItem key={volunteer._id} value={volunteer._id}>
+                      {volunteer.firstName} {volunteer.lastName}
                     </MenuItem>
-                  )}
+                  ))}
                 </TextField>
+
 
                 <Box mt={4}>
                   <Button
