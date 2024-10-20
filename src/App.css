@@ -1,0 +1,26 @@
+.login-header {
+  position: absolute;
+  top: 20px;
+  left: 30px;
+  color: #6bcbf2;
+}
+
+.login-header h1 {
+  font-family: 'Arial', sans-serif;
+  font-size: 32px;
+}
+
+.login-header span {
+  color: white;
+}
+
+.App {
+  text-align: center;
+  background-color: #001524;
+  font-family: Arial, sans-serif;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}

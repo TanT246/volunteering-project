@@ -1,0 +1,58 @@
+.login-container {
+    background-image: url('https://vignette.wikia.nocookie.net/losjvenestitanes/images/6/6a/TORRE_DE_LOS_TITANES.jpg/revision/latest?cb=20180724231726&path-prefix=es'); /* Replace with correct path */
+    background-size: cover;
+    height: 100vh; /* Full viewport height */
+    display: flex; /* Use flexbox for centering */
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    color: white;
+    position: relative; /* Make the container a positioned ancestor for absolute positioning */
+}
+
+.login-box {
+    background-color: #6bcbf2;
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2);
+    text-align: center; /* Center text inside the box */
+    width: 300px; /* Fixed width for the box */
+}
+
+.login-box h1 {
+    font-family: 'serif', 'cursive'; /* Replace with the font for the login text */
+    font-size: 48px;
+    margin-bottom: 30px;
+}
+
+.login-box input {
+    width: 100%;
+    padding: 10px, 15px;
+    margin: 10px 0;
+    border: none;
+    border-radius: 5px;
+    font-size: 18px;
+}
+
+.login-box button {
+    background-color: #d9534f;
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.login-box button:hover {
+    background-color: #c9302c;
+}
+
+/* New CSS for the image */
+.bottom-right-image {
+    position: absolute; /* Position the image absolutely within the container */
+    bottom: 10px; /* Adjust distance from the bottom */
+    right: 0px; /* Adjust distance from the right */
+    bottom: 0px;/* Adjust distance from the bottom */
+    width: 24vw;
+    z-index: 10; /* Ensure the image appears above other content */
+}

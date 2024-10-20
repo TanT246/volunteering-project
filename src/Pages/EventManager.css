@@ -1,0 +1,155 @@
+.event-manager {
+  background-color: #1b2329;
+  background-image: url('../../public/PalmeraCity.png');
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  flex-direction: column; /* Ensure content is stacked vertically */
+  justify-content: flex-start;
+  align-items: center;
+  position: relative;
+  padding: 60px 0;
+  min-height: 100vh;
+  width: 100%;
+}
+
+.event-manager::before {
+  content: "";
+  background-image: url('../../public/BlueBeetle.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  position: absolute;
+  left: -10%; /* Shift the image more to the left */
+  top: 50%; /* Center vertically */
+  transform: translateY(-50%); /* Vertically center without affecting horizontal position */
+  width: 700px; /* Image size */
+  height: 900px; /* Image size */
+  z-index: 3; /* Ensure the image is behind the form */
+  
+  /* Animation settings */
+  animation: beetlePulse 6s infinite;
+}
+
+/* Keyframes for the animation */
+@keyframes beetlePulse {
+  0%, 100% {
+    transform: translateY(-50%) scale(1); /* Normal size at start and end */
+  }
+  50% {
+    transform: translateY(-50%) scale(1.1); /* Slightly larger in the middle of the animation */
+  }
+}
+
+.event-form {
+  background-color: rgba(255, 255, 255, 0.6); /* Same background color */
+  padding: 40px;
+  border-radius: 10px;
+  max-width: 450px;
+  width: 100%;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+  z-index: 2;
+  margin-bottom: 30px;
+}
+
+.event-form h1,
+.event-form h2 {
+  color: #107faa;
+}
+
+.event-form h1 {
+  font-size: 2.3rem;
+  margin-bottom: 20px;
+}
+
+.event-form h2 {
+  margin-bottom: 20px;
+  font-size: 30px;
+}
+
+.event-form input[type="date"] {
+  padding: 8px;
+  font-family: 'Bangers', cursive;
+}
+
+.event-form input,
+.event-form textarea,
+.event-form select {
+  width: 100%;
+  padding: 10px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+  font-family: 'Bangers', cursive;
+}
+
+.event-form button {
+  width: 50%;
+  padding: 10px;
+  background-color: #FFA500;
+  color: #003049;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  font-family: 'Bangers', cursive;
+}
+
+.event-form button:hover {
+  background-color: #ff8c00;
+}
+
+.event-form select {
+  position: relative;
+  z-index: 10;
+}
+
+.event-list {
+  background-color: rgba(255, 255, 255, 0.6); /* Same background as the form */
+  padding: 20px;
+  border-radius: 10px;
+  max-width: 650px;
+  width: 100%;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
+.event-list h2 {
+  color: #107faa; /* Brighter color for visibility */
+  font-size: 2rem;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.event-item {
+  background-color: #fff;
+  padding: 15px;
+  margin-bottom: 15px;
+  border-radius: 10px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.event-item h3 {
+  margin-top: 0;
+  font-family: 'Bangers', cursive;
+  color: #107faa;
+}
+
+.event-item p {
+  margin: 5px 0;
+  font-family: 'Bangers', cursive;
+}
+
+.event-item button {
+  padding: 8px 12px;
+  background-color: #FFA500;
+  color: #003049;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-family: 'Bangers', cursive;
+}
+
+.event-item button:hover {
+  background-color: #ff8c00;
+}
