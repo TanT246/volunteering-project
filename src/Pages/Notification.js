@@ -10,11 +10,25 @@ const Notif = () => {
   // Fetch notifications from the back-end
   useEffect(() => {
     const fetchNotifications = async () => {
+      const token = localStorage.getItem('token'); // Retrieve token from localStorage
+      console.log('Token being sent:', token); // Log the token
+
+      if (!token) {
+        console.error('No token found. User is not logged in.');
+        return;
+      }
+
       try {
-        const response = await axios.get('http://localhost:5000/api/notifications');
-        setNotifications(response.data);
+        const response = await axios.get('http://localhost:5000/api/notifications', {
+          headers: {
+            Authorization: `Bearer ${token}`, // Pass token in Authorization header
+          },
+        });
+
+        console.log('Fetched notifications:', response.data); // Log fetched notifications
+        setNotifications(response.data); // Update state with fetched notifications
       } catch (error) {
-        console.error('Error fetching notifications:', error);
+        console.error('Error fetching notifications:', error.response?.data || error.message);
       }
     };
 
@@ -50,7 +64,7 @@ const Notif = () => {
   };
 
   return (
-    <div className="notif-page"> {/* Unique class added here */}
+    <div className="notif-page">
       <div className="notification-wrapper">
         <h1>Notifications</h1>
         <div
@@ -60,11 +74,20 @@ const Notif = () => {
         >
           {notifications.length > 0 ? (
             notifications.map((notification) => (
-              <div key={notification.id} className="notification">
+              <div key={notification.id || notification._id} className="notification">
                 <h2>{notification.title}</h2>
                 <p>{notification.message}</p>
-                <span>{notification.time}</span>
-                <button onClick={() => dismissNotification(notification.id)}>Dismiss</button>
+                {/* Format and display the createdAt date */}
+                <span>
+                  {notification.createdAt
+                    ? new Date(notification.createdAt).toLocaleString()
+                    : 'Date not available'}
+                </span>
+                <button
+                  onClick={() => dismissNotification(notification.id || notification._id)}
+                >
+                  Dismiss
+                </button>
               </div>
             ))
           ) : (

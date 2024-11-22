@@ -29,6 +29,9 @@ function Login() {
       const data = await response.json();
       console.log('Login successful:', data);
 
+      // Save token to localStorage
+      localStorage.setItem('token', data.token);
+
       // Show success message and navigate to the main page after 1 second
       setNotification({ message: 'Logging in...', type: 'success' });
       setTimeout(() => {
