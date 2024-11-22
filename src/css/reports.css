@@ -1,0 +1,178 @@
+.reports-page {
+    position: relative; /* Ensures it respects scrolling */
+    min-height: 100vh; /* Full viewport height */
+    background-image: url('../../public/cityscape.webp'); /* Public folder reference */
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed; /* Keeps the background fixed during scroll */
+    display: flex;
+    justify-content: center; /* Horizontal centering */
+    padding-top: 80px; /* Adjust for navbar height */
+    margin: 0;
+  }
+  
+  .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.45); /* Dark overlay */
+    z-index: 0; /* Layer below the container */
+  }
+  
+  .center-wrapper {
+    display: flex;
+    flex-direction: column; /* Stack content vertically */
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    min-height: calc(100vh - 80px); /* Ensure height adjusts with navbar */
+    padding-bottom: 2rem; /* Add space at the bottom to avoid cut-off */
+    box-sizing: border-box; /* Includes padding in height calculations */
+  }
+  
+  .container {
+    background: rgba(255, 255, 255, 0.1); /* Semi-transparent container */
+    border-radius: 12px;
+    padding: 2rem;
+    max-width: 700px;
+    width: 90%; /* Adjust width for smaller screens */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    backdrop-filter: blur(8px); /* Adds a frosted glass effect */
+    z-index: 1; /* Ensure it’s above the overlay */
+    margin-bottom: 1rem; /* Add margin between sections when scrolling */
+  }
+  
+  .reports-title {
+    font-family: 'Bangers', cursive;
+    font-size: 2.5rem;
+    color: #fbc531;
+    margin-bottom: 1.5rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+  }
+  
+  .reports-buttons {
+    display: grid; /* Use a grid layout to arrange buttons */
+    grid-template-columns: repeat(2, 1fr); /* Create a 2-column layout with equal width for each column */
+    gap: 1rem; /* Add space between buttons for a cleaner look */
+    justify-content: center; /* Center the grid content horizontally */
+    margin-bottom: 2rem; /* Add space below the buttons section */
+  }
+  
+  .report-btn {
+    background-color: #e84118; /* Set the button background color to red */
+    color: #ffffff; /* Set the button text color to white */
+    font-weight: bold; /* Make the button text bold */
+    font-size: 1rem; /* Set the button text size */
+    text-transform: uppercase; /* Transform the button text to uppercase */
+    padding: 0.8rem 1.5rem; /* Add padding inside the button for consistent spacing */
+    border-radius: 8px; /* Round the corners of the button */
+    border: none; /* Remove the default border */
+    cursor: pointer; /* Change the cursor to a pointer on hover */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth animation for hover effects */
+    height: 4rem; /* Set a fixed height for all buttons to ensure they are uniform */
+    display: flex; /* Use flexbox for centering content */
+    align-items: center; /* Vertically center the button text */
+    justify-content: center; /* Horizontally center the button text */
+  }
+  
+  .report-btn:hover {
+    background-color: #c23616; /* Darken the button color on hover */
+    transform: translateY(-4px); /* Move the button up slightly on hover for a "pop" effect */
+    box-shadow: 0 6px 12px rgba(255, 0, 0, 0.6); /* Add a shadow for a more dynamic hover effect */
+  }
+  
+  .report-btn:active {
+    transform: translateY(0); /* Reset the button position when clicked */
+    box-shadow: none; /* Remove the shadow during click for a pressed effect */
+  }
+  
+  .reports-page {
+    position: relative; /* Allows overlay and content stacking */
+    min-height: 100vh; /* Ensures the page fills the viewport vertically */
+    background-image: url('../../public/cityscape.webp'); /* Sets the cityscape background */
+    background-size: cover; /* Cover the entire viewport with the background */
+    background-position: center; /* Center the background image */
+    background-attachment: fixed; /* Fixes the background in place during scrolling */
+    display: flex; /* Enables flex layout for centering */
+    justify-content: center; /* Center content horizontally */
+    padding-top: 80px; /* Adjust for navbar height */
+    margin: 0; /* Remove any default margin */
+  }
+  
+  .overlay {
+    position: absolute; /* Covers the entire viewport */
+    top: 0; 
+    left: 0; 
+    right: 0; 
+    bottom: 0; 
+    background: rgba(0, 0, 0, 0.45); /* Adds a dark overlay for better contrast */
+    z-index: 0; /* Layer behind the container */
+  }
+  
+  .center-wrapper {
+    display: flex; 
+    flex-direction: column; 
+    align-items: center; 
+    justify-content: center; 
+    width: 100%; /* Full width of the page */
+    min-height: calc(100vh - 80px); /* Ensure it fills the viewport minus the navbar height */
+    padding-bottom: 2rem; /* Prevent cut-off content at the bottom */
+    box-sizing: border-box; /* Include padding in height calculation */
+  }
+  
+  .container {
+    background: rgba(255, 255, 255, 0.1); /* Semi-transparent background for the container */
+    border-radius: 12px; 
+    padding: 2rem; 
+    max-width: 700px; 
+    width: 90%; /* Adjust container width on smaller screens */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); /* Add a subtle shadow for depth */
+    text-align: center; /* Center align text inside the container */
+    backdrop-filter: blur(8px); /* Apply a frosted glass effect */
+    z-index: 1; /* Ensure it appears above the overlay */
+    margin-bottom: 1rem; /* Add spacing between sections when scrolling */
+  }
+  
+  .reports-title {
+    font-family: 'Bangers', cursive; /* Apply a superhero-themed font */
+    font-size: 2.5rem; 
+    color: #fbc531; /* Use a bright yellow color for the title text */
+    margin-bottom: 1.5rem; 
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* Add a shadow for better readability */
+  }
+  
+  .data-preview {
+    color: #ffffff; 
+    text-align: left; /* Left align the data preview */
+    margin-top: 1.5rem; 
+  }
+  
+  .data-preview h2 {
+    font-size: 1.5rem; 
+    color: #fbc531; /* Use bright yellow for section titles */
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); /* Add a subtle shadow for better readability */
+    margin-bottom: 1rem; /* Add space below each section title */
+  }
+  
+  .data-preview ul {
+    list-style: none; /* Remove default list styles */
+    padding: 0; /* Remove padding */
+  }
+  
+  .data-preview li {
+    margin: 0.5rem 0; /* Add space between list items */
+    background: rgba(0, 0, 0, 0.2); /* Use a semi-transparent background for list items */
+    padding: 0.5rem; /* Add padding for spacing inside the list item */
+    border-radius: 6px; /* Round the corners for a modern look */
+  }
+  
+  /* Ensure no white gap or scrollbars */
+  body, html {
+    margin: 0; /* Remove default margin */
+    padding: 0; /* Remove default padding */
+    min-height: 100%; /* Ensure the body fills the viewport height */
+  }
+  

@@ -21,6 +21,7 @@ const NavBar = () => {
             <a href="/user-profile-manager">User Profile Management</a>
             <a href="/volunteer-history">Volunteer History</a>
             <a href="/notif">Notifications</a>
+            <a href="/reports">Reports</a> {/* Added Reports link here */}
           </div>
         </li>
       </ul>

@@ -150,6 +150,9 @@ const ProfileForm = () => {
                     'Basic coding',
                     'Physics',
                     'Chemistry',
+                    'Coding',
+                    'Communication',
+                    'Leadership',
                   ].map((skill) => (
                     <MenuItem key={skill} value={skill}>
                       <Checkbox checked={skills.includes(skill)} />

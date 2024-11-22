@@ -11,12 +11,13 @@ import UserProfileManager from './Pages/UserProfileManager';
 import NavBar from './component/NavBar';
 import VolunteeringHistory from './Pages/VolunteerHistory';
 import AboutUs from './Pages/AboutUs';
+import Reports from './Pages/Reports'; // Import the Reports page
 
 function App() {
   return (
     <Router>
       <div className="App">
-      <NavBar />
+        <NavBar />
         {/* Define routes for different pages */}
         <Routes>
           <Route path="/" element={<Home />} />
@@ -28,7 +29,8 @@ function App() {
           <Route path="/event-manager" element={<EventManager />} />
           <Route path="/user-profile-manager" element={<UserProfileManager />} />
           <Route path="/notif" element={<Notif />} />
-          <Route path="/volunteer-history" element={<VolunteeringHistory/>} />
+          <Route path="/volunteer-history" element={<VolunteeringHistory />} />
+          <Route path="/reports" element={<Reports />} /> {/* Added Reports route */}
         </Routes>
       </div>
     </Router>
