@@ -16,6 +16,7 @@ import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { DateRangePicker } from '@mui/x-date-pickers-pro/DateRangePicker';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom'; // Import useNavigate for navigation
 import './styles.css';
 
 const ProfileForm = () => {
@@ -25,6 +26,7 @@ const ProfileForm = () => {
   const [preferences, setPreferences] = useState('');
   const [availability, setAvailability] = useState([null, null]);
   const [loading, setLoading] = useState(true);
+  const navigate = useNavigate(); // Initialize navigate
 
   useEffect(() => {
     axios
@@ -59,14 +61,14 @@ const ProfileForm = () => {
     const formData = new FormData();
     formData.append('firstName', fullName.split(' ')[0]); // Extract first name
     formData.append('lastName', fullName.split(' ').slice(1).join(' ')); // Extract last name
-    
+
     if (profilePicture) {
       formData.append('profilePicture', profilePicture);
     }
 
     formData.append('skills', JSON.stringify(skills)); // Send skills as a JSON string
     formData.append('preferences', preferences);
-    
+
     // Split availability into startDate and endDate
     formData.append('startDate', availability[0]);
     formData.append('endDate', availability[1]);
@@ -83,9 +85,16 @@ const ProfileForm = () => {
       const data = await response.json();
       console.log(data);
 
-      alert('Profile updated successfully');
+      // Redirect to the home page after successful profile update
+      if (response.ok) {
+        alert('Profile updated successfully');
+        navigate('/'); // Navigate to the home page
+      } else {
+        alert(data.message || 'Error updating profile');
+      }
     } catch (error) {
       console.error('Error updating profile:', error);
+      alert('An error occurred while updating the profile.');
     }
   };
 
@@ -102,10 +111,11 @@ const ProfileForm = () => {
             sx={{
               padding: '2rem',
               borderRadius: '16px',
-              backgroundColor: 'rgba(255, 255, 255, 0.85)',
-              border: '2px solid #000',
-              boxShadow: '0px 8px 15px rgba(0, 0, 0, 0.2)',
+              backgroundColor: 'rgba(92, 154, 67, 0.85)', // Transparent Ninja Turtle green
+              border: '2px solid #D32F2F', // Ninja Turtle red (Raphael's red)
+              boxShadow: '0px 8px 15px rgba(0, 0, 0, 0.2)', // Subtle shadow
             }}
+            
           >
             <Typography variant="h4" gutterBottom>
               User Profile
@@ -122,12 +132,16 @@ const ProfileForm = () => {
               <Typography variant="body1" sx={{ mb: 1 }}>
                 Profile Picture
               </Typography>
-              <input
-                accept="image/*"
-                type="file"
-                onChange={handleProfilePictureChange}
-                style={{ marginBottom: '16px' }}
+                <input
+                  accept="image/*"
+                  type="file"
+                  onChange={handleProfilePictureChange}
+                  style={{
+                    marginBottom: '16px',
+                    width: '95%', 
+                  }}
               />
+
               <FormControl fullWidth sx={{ mb: 2 }}>
                 <InputLabel>Skills</InputLabel>
                 <Select
